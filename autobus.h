@@ -12,6 +12,7 @@ public:
 	int liczba_miejsc;
 	Autobus(string = "BRAK", string = "BMW", int = 12);
 	~Autobus();
+	Autobus(const Autobus &);
 	void wczytaj();
 	void wyswietl();
 };

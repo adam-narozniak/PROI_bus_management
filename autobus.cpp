@@ -28,3 +28,9 @@ Autobus::~Autobus() {
 	cout << "Destruktor wlaczony" << endl;
 
 }
+
+Autobus::Autobus(const Autobus &autobus) {
+	nr_rej = autobus.nr_rej;
+	marka = autobus.marka;
+	liczba_miejsc = autobus.liczba_miejsc;
+}

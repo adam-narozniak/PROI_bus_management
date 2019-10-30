@@ -17,9 +17,7 @@ int main(void) {
 void test() {
 	cout << "Funkcja testujaca" << endl;
 	cout << "Tworze podstawowa klase Autobus" << endl;
-	Autobus autobus01;
-	autobus01.wyswietl();
-	autobus01.wczytaj();
+	Autobus autobus01("WWL0000", "MBD", 13);
 	autobus01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
 	Kierowca kierowca01;
@@ -37,7 +35,19 @@ void test() {
 	Miejsca miejsca01;
 	miejsca01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
+	cout << "Test kostruktora kopiujacego" << endl;
+	Autobus autobus02(autobus01);
+	autobus02.wyswietl();
+	cout << "Modyfikacja drugiego (nowo powstalego obiektu)" << endl;
+	autobus02.wczytaj();
+	cout << "Porownanie dwoch obiektow (w celu sprawdzenia ze dzialam na nowo powstalym obiekcie, a nie na starym do ktorego mam wskaznik" << endl;
+	cout << "-------------------01-------------------------------" << endl;
+	autobus01.wyswietl();
+	cout << "-------------------02-------------------------------" << endl;
+	autobus02.wyswietl();
 
+
+	
 
 	
 }
