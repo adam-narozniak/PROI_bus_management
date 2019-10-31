@@ -11,11 +11,11 @@ void Bak::wczytaj() {
 }
 
 void Bak::wyswietl() {
+	cout << "Stan obecny(ilosc paliwa w baku): " << stan << endl;
 	cout << "Pojemnosc: " << pojemnosc << endl;
-	cout << "Stan obecny(ilosc paliwa w baku): " << stan<< endl;
 }
 
-Bak::Bak(double poj, double stn) {
+Bak::Bak(double stn, double poj) {
 	pojemnosc = poj;
 	stan = stn;
 }
@@ -23,4 +23,13 @@ Bak::Bak(double poj, double stn) {
 Bak::~Bak() {
 	cout << "Destruktor Bak wlaczony" << endl;
 
+}
+
+void Bak::zmien_stan(double stn) {
+	if (stn > 60) {
+		stan = stn;
+	}
+	else {
+		stan = stn;
+	}
 }

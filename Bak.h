@@ -3,12 +3,14 @@ using namespace std;
 #ifndef Bak_H
 #define Bak_H
 class Bak {
-public:
+
 	double pojemnosc;// w litrach
 	double stan;//ile litrow jest obecnie w baku
-	Bak(double = 60, double = 60);
+public:
+	Bak(double = 40, double = 60);
 	~Bak();
 	void wczytaj();
 	void wyswietl();
+	void zmien_stan(double = 60);
 };
 #endif

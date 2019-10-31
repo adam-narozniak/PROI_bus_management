@@ -16,26 +16,35 @@ int main(void) {
 
 void test() {
 	cout << "Funkcja testujaca" << endl;
+	cout << "--------------------------------------------------" << endl;
 	cout << "Tworze podstawowa klase Autobus" << endl;
+	cout << "--------------------------------------------------" << endl;
 	Autobus autobus01("WWL0000", "MBD", 13);
 	autobus01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
-	Kierowca kierowca01;
+	Kierowca kierowca01("miroslaw", "pajak", 34534);
 	kierowca01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
 
-	Bak bak01;
+	Bak bak01(34,60);
 	bak01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
 
-	Silnik silnik01;
+	Silnik silnik01(1.9, 130, 1);
 	silnik01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
 
-	Miejsca miejsca01;
+	Miejsca miejsca01(13, 23, 53, 7);
 	miejsca01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
-	cout << "Test kostruktora kopiujacego" << endl;
+
+	cout << "TANKOWANIE" << endl;
+	autobus01.tankuj(50);
+	autobus01.wyswietl();
+	cout << "--------------------------------------------------" << endl;
+
+
+	/*cout << "Test kostruktora kopiujacego" << endl;
 	Autobus autobus02(autobus01);
 	autobus02.wyswietl();
 	cout << "Modyfikacja drugiego (nowo powstalego obiektu)" << endl;
@@ -45,6 +54,8 @@ void test() {
 	autobus01.wyswietl();
 	cout << "-------------------02-------------------------------" << endl;
 	autobus02.wyswietl();
+	cout << "--------------------------------------------------" << endl;*/
+
 
 
 	
