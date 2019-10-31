@@ -28,3 +28,12 @@ Kierowca::~Kierowca() {
 	cout << "Destruktor Kierowca wlaczony" << endl;
 
 }
+string Kierowca::get_imie() {
+	return imie;
+}
+string Kierowca:: get_nazwisko(){
+	return nazwisko;
+}
+int Kierowca:: get_id() {
+	return id;
+}

@@ -28,3 +28,13 @@ Silnik::~Silnik() {
 	cout << "Destruktor Silnik wlaczony" << endl;
 
 }
+
+double Silnik:: get_pojemnosc() {
+	return pojemnosc;
+}
+double Silnik::get_moc() {
+	return moc;
+}
+int Silnik::get_typ() {
+	return typ;
+}

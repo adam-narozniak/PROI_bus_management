@@ -5,6 +5,7 @@
 #include "bak.h"
 #include "silnik.h"
 #include "miejsca.h"
+#include "pasazerowie.h"
 using namespace std;
 
 void test();
@@ -22,11 +23,25 @@ void test() {
 	Autobus autobus01("WWL0000", "MBD", 13);
 	autobus01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
-	Kierowca kierowca01("miroslaw", "pajak", 34534);
-	kierowca01.wyswietl();
+	cout << "TANKOWANIE" << endl;
+	autobus01.tankuj(50);
+	autobus01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
+	Kierowca *kierowca01= new Kierowca("miroslaw", "pajak", 34534);
+	kierowca01->wyswietl();
+	cout << "--------------------------------------------------" << endl;
+	cout << "Przypisanie kierowcy do autobusu" << endl;
+	autobus01.przypisz_kierowce(kierowca01);
+	cout << "--------------------------------------------------" << endl;
+	cout << "Po zmianach" << endl;
+	autobus01.wyswietl();
 
-	Bak bak01(34,60);
+
+
+
+	
+
+	/*Bak bak01(34, 60);
 	bak01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
 
@@ -38,11 +53,7 @@ void test() {
 	miejsca01.wyswietl();
 	cout << "--------------------------------------------------" << endl;
 
-	cout << "TANKOWANIE" << endl;
-	autobus01.tankuj(50);
-	autobus01.wyswietl();
-	cout << "--------------------------------------------------" << endl;
-
+	*/
 
 	/*cout << "Test kostruktora kopiujacego" << endl;
 	Autobus autobus02(autobus01);

@@ -12,5 +12,7 @@ public:
 	void wczytaj();
 	void wyswietl();
 	void zmien_stan(double = 60);
+	double get_pojemnosc();
+	double get_stan();
 };
 #endif

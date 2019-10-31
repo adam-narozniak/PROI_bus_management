@@ -12,5 +12,8 @@ public:
 	~Kierowca();
 	void wczytaj();
 	void wyswietl();
+	string get_imie();
+	string get_nazwisko();
+	int get_id();
 };
 #endif

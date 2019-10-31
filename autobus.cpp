@@ -22,18 +22,31 @@ void Autobus::wyswietl() {
 	cout<< "Bak to: " << endl;
 	bak->wyswietl();
 	cout << "--------------------------------------------------" << endl;
+	cout << "Kierowca to: " << endl;
+	if (kierowca != NULL) {
+		kierowca->wyswietl();
 
+	}
+	else {
+		cout << "Kierowca nie jest przypisany do autobusu" << endl;
+	}
 }
 
-Autobus::Autobus(string r, string m, int l, double p, double mo, int t){
+Autobus::Autobus(string r, string m, int l, double p, double mo, int t, double s, double po){
 	nr_rej = r;
 	marka = m;
 	liczba_miejsc = l;
 	silnik = new Silnik(p, mo, t);
 	bak = new Bak();
+	kierowca = NULL;
 }
 
 Autobus::~Autobus() {
+	delete silnik;
+	delete bak;
+	if (kierowca != NULL) {
+		delete kierowca;
+	}
 	cout << "Destruktor wlaczony" << endl;
 
 }
@@ -42,6 +55,7 @@ Autobus::Autobus(const Autobus &autobus) {
 	nr_rej = autobus.nr_rej;
 	marka = autobus.marka;
 	liczba_miejsc = autobus.liczba_miejsc;
+
 }
 
 Kierowca * Autobus::stworz_kierowce(string im, string n, int i) {
@@ -49,15 +63,14 @@ Kierowca * Autobus::stworz_kierowce(string im, string n, int i) {
 	return k;
 }
 
-bool Autobus::przypisz_kierowce(Kierowca *k) {
+void Autobus::przypisz_kierowce(Kierowca *k) {
 	if (k != NULL) {
 		kierowca = k;
 		cout << "Kierowca poprawnie przypisany" << endl;
-		return 1;
+		kierowca->wyswietl();
 	}
 	else {
 		cout << "Autobus nie ma obecnie kierowcy" << endl;
-		return 0;
 	}
 
 }

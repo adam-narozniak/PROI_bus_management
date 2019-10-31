@@ -33,3 +33,10 @@ void Bak::zmien_stan(double stn) {
 		stan = stn;
 	}
 }
+
+double Bak::get_pojemnosc() {
+	return pojemnosc;
+}
+double Bak::get_stan() {
+	return stan;
+}
