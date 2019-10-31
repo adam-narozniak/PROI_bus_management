@@ -12,16 +12,15 @@ using namespace std;
 class Autobus {
 	string nr_rej;
 	string marka;
-	int liczba_miejsc;
 	Silnik * silnik;
 	Bak *bak;
 	Kierowca *kierowca;
-	Miejsca *miejsca;
-	Pasazerowie *pasazerowie;
+	//Miejsca *miejsca;
+	//Pasazerowie *pasazerowie;
 
 public:
 	//dla Autobusu
-	Autobus(string = "BRAK", string = "BMW", int = 12, double = -1.0, double = -1.0, int = -1, double = 40, double = 60);
+	Autobus(string = "BRAK", string = "BMW", double = -1.0, double = -1.0, int = -1, double = 40, double = 60);// , int = 30, int = 80, int = 2, int = 30, int = 24, int = 2);
 	~Autobus();
 	Autobus(const Autobus &);
 	void wczytaj();

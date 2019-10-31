@@ -7,7 +7,6 @@ class Silnik {
 	double moc;// w KM
 	int typ;
 public:
-	int typ;
 	Silnik(double pojemnosc =-1.0, double moc = -1.0, int typ = -1);
 	~Silnik();
 	void wczytaj();
