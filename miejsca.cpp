@@ -14,20 +14,18 @@ void Miejsca::wczytaj() {
 }
 
 void Miejsca::wyswietl() {
+	cout << "//////////////////////////////////////////////////////" << endl;
 	cout << "miejsca_normalne: " << miejsca_normalne << endl;
 	cout << "miejsca_stojace: " << miejsca_stojace << endl;
 	cout << "miejsca_rowery: " << miejsca_rowery << endl;
-	//cout << "miejsca_niepelnosprawni: " << miejsca_niepelnosprawni << endl;
+	cout << "//////////////////////////////////////////////////////" << endl;
 
 }
 
 Miejsca::Miejsca(int n, int s, int r){
-	//, int np) {
 	miejsca_normalne = n;
 	miejsca_stojace = s;
 	miejsca_rowery = r;
-	//miejsca_niepelnosprawni = np;
-
 }
 
 Miejsca::~Miejsca() {

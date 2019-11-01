@@ -1,13 +1,17 @@
 #include <iostream>
+#include <vector> 
+//#include <bits/stdc++.h>
 using namespace std;
 #ifndef Silnik_H
 #define Silnik_H
 class Silnik {
-	double pojemnosc;//w litrach
-	double moc;// w KM
+	double pojemnosc;	//w litrach
+	double moc;			// w KM
 	int typ;
 public:
-	Silnik(double pojemnosc =-1.0, double moc = -1.0, int typ = -1);
+	//static vector <string> typ_silnika;
+	Silnik(double pojemnosc = 2.2, double moc = 190, int typ = 1);
+	Silnik(Silnik &);
 	~Silnik();
 	void wczytaj();
 	void wyswietl();

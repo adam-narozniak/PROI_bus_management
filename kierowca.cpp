@@ -12,16 +12,23 @@ void Kierowca::wczytaj() {
 }
 
 void Kierowca::wyswietl() {
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << "Imie: " << imie<< endl;
 	cout << "Nazwisko: " << nazwisko << endl;
 	cout << "Id: " << id << endl;
-
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 }
 
 Kierowca::Kierowca(string im, string n, int i) {
 	imie = im;
 	nazwisko = n;
 	id = i;
+}
+
+Kierowca::Kierowca(Kierowca &kierowca) {
+	imie = kierowca.imie;
+	nazwisko = kierowca.nazwisko;
+	id = kierowca.id;
 }
 
 Kierowca::~Kierowca() {
