@@ -11,10 +11,9 @@ void Bak::wczytaj() {
 }
 
 void Bak::wyswietl() {
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << "Stan obecny(ilosc paliwa w baku): " << stan << endl;
 	cout << "Pojemnosc: " << pojemnosc << endl;
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "--------------------------------------------------" << endl;
 }
 
 Bak::Bak(double stn, double poj) {

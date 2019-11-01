@@ -12,12 +12,10 @@ void Silnik::wczytaj() {
 }
 
 void Silnik::wyswietl() {
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << "Pojemnosc: " << pojemnosc << "L"<< endl;
 	cout << "Moc: " << moc<<"KM"<< endl;
 	cout << "Typ: " << typ << endl;
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-
+	cout << "--------------------------------------------------" << endl;
 }
 
 Silnik::Silnik(Silnik &silnik) {

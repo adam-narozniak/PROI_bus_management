@@ -15,12 +15,12 @@ class Autobus {
 	Silnik * silnik;
 	Bak *bak;
 	Kierowca *kierowca;
-	//Miejsca *miejsca;
-	//Pasazerowie *pasazerowie;
+	Miejsca *miejsca;
+	Pasazerowie *pasazerowie;
 
 public:
 	//dla Autobusu
-	Autobus(string = "BRAK", string = "BMW", double = 2.2, double = 190, int = 1, double = 40, double = 60);// , int = 30, int = 80, int = 2, int = 30, int = 24, int = 2);
+	Autobus(string = "BRAK", string = "BMW", double = 2.2, double = 190, int = 1, double = 40, double = 60, int = 30, int = 80, int = 2);// , int = 30, int = 24, int = 2);
 	~Autobus();
 	Autobus(const Autobus &);
 	void wczytaj();
@@ -32,6 +32,8 @@ public:
 	Silnik *get_silnik();
 	Bak *get_bak();
 	Kierowca *get_kierowca();
+	Miejsca *get_miejsca();
+	Pasazerowie *get_pasazerowie();
 	//dla kierowcy
 	Kierowca* stworz_kierowce(string = "brak", string = "brak", int = -1);
 	void przypisz_kierowce(Kierowca * = NULL);

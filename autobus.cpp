@@ -11,11 +11,12 @@ void Autobus::wczytaj() {
 }
 
 void Autobus::wyswietl() {
-	cout << endl << endl;
+	cout << endl;
 	cout << "AUTOBUS" << endl;
+	cout << "--------------------------------------------------" << endl;
 	cout << "NR rejestracyjny: " << nr_rej << endl;
 	cout << "Marka: " << marka << endl;
-
+	cout << "--------------------------------------------------" << endl;
 	cout << "Silnik: " << endl;
 	silnik->wyswietl();
 
@@ -24,34 +25,35 @@ void Autobus::wyswietl() {
 
 	cout << "Kierowca: " << endl;
 	if (kierowca == NULL) {
-		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 		cout << "Kierowca nie jest przypisany do autobusu" << endl;
-		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "--------------------------------------------------" << endl;
 	}
 	else {
 		kierowca->wyswietl();
 	}
-
-	/*
-	cout << "Pasazerowie: " << endl;
-	pasazerowie->wyswietl();
-	cout << "--------------------------------------------------" << endl;
 	cout << "Miejsca: " << endl;
-	miejsca->wyswietl();*/
+	miejsca->wyswietl();
 
-	cout << endl << endl;
-
+	cout << "Pasazerowie: " << endl;
+	if (pasazerowie == NULL) {
+		cout << "Brak przypisanych pasazerow" << endl;
+		cout << "--------------------------------------------------" << endl;
+	}
+	else {
+		pasazerowie->wyswietl();
+	}
+	cout << endl;
 }
 
-Autobus::Autobus(string r, string m, double p, double mo, int t, double s, double po) {//, int m1, int m2, int m3, int p1, int p2, int p3){
+Autobus::Autobus(string r, string m, double p, double mo, int t, double s, double po, int m1, int m2, int m3){// , int p1, int p2, int p3){
 	nr_rej = r;
 	marka = m;
 	silnik = new Silnik(p, mo, t);
 	bak = new Bak(s, po);
 	kierowca = NULL;
-	/*miejsca = new Miejsca;// (m1, m2, m3);
-	pasazerowie = new Pasazerowie;// (p1, p2, p3);
-	*/
+	miejsca = new Miejsca(m1, m2, m3);
+	pasazerowie = NULL;//new Pasazerowie;// (p1, p2, p3);
+	
 }
 
 Autobus::~Autobus() {
@@ -60,11 +62,11 @@ Autobus::~Autobus() {
 	if (kierowca != NULL) {
 		delete kierowca;
 	}
-	/*delete pasazerowie;
 	delete miejsca;
-*/
+	if(pasazerowie != NULL) {
+		delete pasazerowie;
+	}
 	cout << "Destruktor AUTOBUS wlaczony" << endl;
-
 }
 
 Autobus::Autobus(const Autobus &autobus) {
@@ -79,10 +81,14 @@ Autobus::Autobus(const Autobus &autobus) {
 	else {
 		kierowca = new Kierowca(autobus.kierowca->get_imie(), autobus.kierowca->get_nazwisko(), autobus.kierowca->get_id());
 	}
-	/*miejsca = new Miejsca(autobus.miejsca->get_miejsca_normalne(), autobus.miejsca->get_miejsca_stojace(), autobus.miejsca->get_miejsca_rowery());
-
-	pasazerowie = new Pasazerowie(autobus.pasazerowie->get_n_pasazerow(), autobus.pasazerowie->get_n_z_biletami(), autobus.pasazerowie->get_n_rowerow());
-	*/
+	miejsca = new Miejsca(autobus.miejsca->get_miejsca_normalne(), autobus.miejsca->get_miejsca_stojace(), autobus.miejsca->get_miejsca_rowery());
+	//pasazerowie = new Pasazerowie(autobus.pasazerowie->get_n_pasazerow(), autobus.pasazerowie->get_n_z_biletami(), autobus.pasazerowie->get_n_rowerow());
+	if (autobus.pasazerowie == NULL) {
+		pasazerowie = NULL;
+	}
+	else {
+		pasazerowie = new Pasazerowie(autobus.pasazerowie->get_n_pasazerow(), autobus.pasazerowie->get_n_z_biletami(), autobus.pasazerowie->get_n_rowerow());
+	}
 
 }
 
@@ -133,6 +139,14 @@ Bak * Autobus::get_bak() {
 Kierowca * Autobus::get_kierowca() {
 	return kierowca;
 }
+Miejsca * Autobus::get_miejsca() {
+	return miejsca;
+}
+Pasazerowie * Autobus::get_pasazerowie() {
+	return pasazerowie;
+}
+
+
 
 //OPERATORY
 

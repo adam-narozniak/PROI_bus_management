@@ -9,14 +9,17 @@
 using namespace std;
 
 void test();
-void test_podklasy();
+void test_konsturkora_kopiujacego();
+void test_podklas();
 void test_porownania_mocy();
 void test_tankowania_do_pelna();
 int main(void) {
-	//Autobus a1("ww0012", "mercedes", 2.2, 190, 1, 10, 60);
-	//cout << a1.get_bak()->get_stan() << endl;
-	test_tankowania_do_pelna();
+	Autobus a1("ww0012", "mercedes", 2.2, 190, 1, 10, 60, 10, 40, 1);
+	a1.wyswietl();
+	//test_tankowania_do_pelna();
 	//test();
+	//test_podklas();
+	//test_konsturkora_kopiujacego();
 }
 
 void test() {
@@ -24,33 +27,32 @@ void test() {
 	cout << "--------------------------------------------------" << endl;
 	cout << "Tworze podstawowa klase Autobus" << endl;
 	cout << "--------------------------------------------------" << endl;
-	Autobus autobus01("WWL0000", "MBD");
-	autobus01.wyswietl();
+	Autobus autobus1("WWL0000", "MBD");
+	autobus1.wyswietl();
+	autobus1.stworz_kierowce();
 
-	autobus01.stworz_kierowce();
 
-
-	cout << "KONSTRUKTOR KOPIUJACY kopia 01 w 03" << endl;
+	
 	//Autobus * autobus02 = new Autobus("WWL0000", "MBD");;
 
-	Autobus autobus03(autobus01);
-	cout << "AUTOBUS 03" << endl;
-	autobus03.wyswietl();
+	Autobus autobus2(autobus1);
+	cout << "AUTOBUS 2" << endl;
+	autobus2.wyswietl();
 	cout << "--------------------------------------------------" << endl;
 	cout << "--------------------------------------------------" << endl;
 	cout << "TANKOWANIE KOPII 03" << endl;
-	autobus03.tankuj(50);
-	autobus03.wyswietl();
+	autobus2.tankuj(50);
+	autobus2.wyswietl();
 	cout << "```````````````````````````````````````````````````" << endl;
 	cout << "Przypisanie kierowcy do autobusu 03" << endl;
 	cout << "--------------------------------------------------" << endl;
 	Kierowca *kierowca01 = new Kierowca("miroslaw", "pajak", 34534);
-	autobus03.przypisz_kierowce(kierowca01);
+	autobus2.przypisz_kierowce(kierowca01);
 	cout << "--------------------------------------------------" << endl;
-	cout << "Po zmianach03" << endl;
-	autobus03.wyswietl();
-	cout << "Po zmianach 01" << endl;
-	autobus01.wyswietl();
+	cout << "Po zmianach2" << endl;
+	autobus2.wyswietl();
+	cout << "Po zmianach 1" << endl;
+	autobus1.wyswietl();
 	cout << "Jak widac zmiany nie dotknely 01" << endl << "Konstruktor kopiujacy dziala poprawnie" << endl;
 	
 
@@ -74,22 +76,23 @@ void test() {
 
 	
 }
-void test_podklasy() {
-	Miejsca miejsca01;
-	miejsca01.wyswietl();
-	cout << "--------------------------------------------------" << endl;
+void test_podklas() {
+	cout << endl;
+	Silnik silnik01(1.9, 130, 1);
+	silnik01.wyswietl();
 
 	Bak bak01(34, 60);
 	bak01.wyswietl();
-	cout << "--------------------------------------------------" << endl;
+
+	Kierowca k("Jan", "Nowak", 01234);
+	k.wyswietl();
+
+	Miejsca miejsca01;
+	miejsca01.wyswietl();
 
 	Pasazerowie pas01(10, 12, 3);
 	pas01.wyswietl();
-	cout << "--------------------------------------------------" << endl;
-
-	Silnik silnik01(1.9, 130, 1);
-	silnik01.wyswietl();
-	cout << "--------------------------------------------------" << endl;
+	cout << endl;
 }
 
 void test_porownania_mocy() {//dziala 
@@ -106,4 +109,17 @@ void test_tankowania_do_pelna() {
 	a1.wyswietl();
 	a1 = !a1;
 	a1.wyswietl();
+}
+void test_konsturkora_kopiujacego() {
+	cout << "KONSTRUKTOR KOPIUJACY kopia 1 w 2" << endl;
+	Autobus a1("ww0012", "mercedes", 2.2, 190, 1, 10, 60);
+	cout << "Przed zmianami 1" << endl;
+	a1.wyswietl();
+	Autobus a2(a1);
+	cout << "TANKOWANIE KOPII - autobus 2" << endl;
+	a2.tankuj(50);
+	cout << "Po zmianach 1" << endl;
+	a1.wyswietl();
+	cout << "Po zmianach 2" << endl;
+	a2.wyswietl();
 }

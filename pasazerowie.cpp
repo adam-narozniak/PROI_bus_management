@@ -5,19 +5,17 @@
 
 using namespace std;
 void Pasazerowie::wczytaj() {
-	cout << "Podaj liczbe miejsc normalnych, Pasazerowie_niepelnosprawni, Pasazerowie_stoj¹ce" << endl;
+	cout << "Podaj liczbe pasazerow, pasazerow z biletami oraz liczbe rowerow" << endl;
 	cin >> n_pasazerow;
 	cin >> n_z_biletami;
 	cin >> n_rowerow;
-	//cin >> Pasazerowie_niepelnosprawni;
-
 }
 
 void Pasazerowie::wyswietl() {
 	cout << "Pasazerowie: " <<n_pasazerow << endl;
 	cout << "Pasazerowie z biletami: " << n_z_biletami<< endl;
 	cout << "Rowery: " << n_rowerow << endl;
-	//cout << "Pasazerowie_niepelnosprawni: " << Pasazerowie_niepelnosprawni << endl;
+	cout << "--------------------------------------------------" << endl;
 
 }
 
@@ -25,13 +23,10 @@ Pasazerowie::Pasazerowie(int n, int b, int r) {
 	n_pasazerow = n;
 	n_z_biletami= b;
 	n_rowerow= r;
-	//Pasazerowie_niepelnosprawni = np;
-
 }
 
 Pasazerowie::~Pasazerowie() {
 	cout << "Destruktor Pasazerowie wlaczony" << endl;
-
 }
 
 int Pasazerowie::get_n_pasazerow() {
