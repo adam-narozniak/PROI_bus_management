@@ -8,7 +8,7 @@ private:
 	int miejsca_stojace;
 	int miejsca_rowery;
 public:
-	Miejsca(int = 30, int = 80, int = 2);
+	Miejsca(int = 40, int = 90, int = 5);
 	~Miejsca();
 	void wczytaj();
 	void wyswietl();

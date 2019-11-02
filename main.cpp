@@ -13,13 +13,18 @@ void test_konsturkora_kopiujacego();
 void test_podklas();
 void test_porownania_mocy();
 void test_tankowania_do_pelna();
+void test_dodawania_pasazerow();
+void test_operatorow_incrementacji();
 int main(void) {
-	Autobus a1("ww0012", "mercedes", 2.2, 190, 1, 10, 60, 10, 40, 1);
-	a1.wyswietl();
+	//Autobus a1("ww0012", "mercedes", 2.2, 190, 1, 10, 60, 10, 40, 1);
+	//a1.wyswietl();
 	//test_tankowania_do_pelna();
 	//test();
 	//test_podklas();
+	//test_porownania_mocy();
 	//test_konsturkora_kopiujacego();
+	test_dodawania_pasazerow();
+
 }
 
 void test() {
@@ -123,3 +128,17 @@ void test_konsturkora_kopiujacego() {
 	cout << "Po zmianach 2" << endl;
 	a2.wyswietl();
 }
+void test_operatorow_incrementacji() {
+
+}
+void test_dodawania_pasazerow() {
+	Autobus a1;
+	cout << "Proba przypisania bez kierowcy" << endl;
+	a1.dodaj_kierowce("Janek", "Nowak", 12345);
+	a1.dodaj_pasazerow(30, 24, 2);
+	a1.wyswietl();
+	++a1;
+	a1.wyswietl();
+
+}
+

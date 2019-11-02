@@ -21,7 +21,13 @@ void Pasazerowie::wyswietl() {
 
 Pasazerowie::Pasazerowie(int n, int b, int r) {
 	n_pasazerow = n;
-	n_z_biletami= b;
+	if (b > n) {
+		n_z_biletami = n;
+	}
+	else {
+		n_z_biletami = b;
+	}
+	
 	n_rowerow= r;
 }
 

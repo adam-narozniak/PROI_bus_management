@@ -20,7 +20,7 @@ class Autobus {
 
 public:
 	//dla Autobusu
-	Autobus(string = "BRAK", string = "BMW", double = 2.2, double = 190, int = 1, double = 40, double = 60, int = 30, int = 80, int = 2);// , int = 30, int = 24, int = 2);
+	Autobus(string = "BRAK", string = "BMW", double = 2.2, double = 190, int = 1, double = 40, double = 60, int = 30, int = 80, int = 2, Kierowca * = NULL, Pasazerowie * = NULL);// , int = 30, int = 24, int = 2);
 	~Autobus();
 	Autobus(const Autobus &);
 	void wczytaj();
@@ -35,15 +35,24 @@ public:
 	Miejsca *get_miejsca();
 	Pasazerowie *get_pasazerowie();
 	//dla kierowcy
+	void dodaj_kierowce(string = "brak", string = "brak", int = -1);
 	Kierowca* stworz_kierowce(string = "brak", string = "brak", int = -1);
 	void przypisz_kierowce(Kierowca * = NULL);
 	Kierowca * zamien_kierowce(Kierowca * = NULL);
+	//dla pasazerow
+	Pasazerowie *stworz_pasazerow(int = 30, int = 80, int = 2);
+	void przypisz_pasazerow(Pasazerowie * = NULL);
+	void dodaj_pasazerow(int = 30, int =24, int =2);
+	//Pasazerowie * zamien_pasazerow(Pasazerowie * = NULL);
+	Autobus & operator --();
+	Autobus & operator ++();
 	//dla baku
 	void tankuj(double = 60.0);
 	//dla silnika
 	bool operator > (const Autobus &) const;
 	bool operator < (const Autobus &) const;
 	Autobus operator !();
+	Autobus operator -();
 	
 
 };
