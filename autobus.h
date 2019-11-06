@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "kierowca.h"
 #include "miejsca.h"
 #include "Bak.h"
@@ -21,14 +20,6 @@ private:
 	Pasazerowie *pasazerowie;
 	
 public:
-	//dla Autobusu
-	Autobus(string = "BRAK", string = "BMW", double = 2.2, double = 190, int = 1, double = 40, double = 60, int = 30, int = 80, int = 2, Kierowca * = NULL, Pasazerowie * = NULL);// , int = 30, int = 24, int = 2);
-	~Autobus();
-	Autobus(const Autobus &);
-	void wczytaj();
-	void wyswietl();
-	Autobus & operator =(const Autobus &);
-	void jedz();
 	//gety
 	string get_nr_rej();
 	string get_marka();
@@ -37,9 +28,19 @@ public:
 	Kierowca *get_kierowca();
 	Miejsca *get_miejsca();
 	Pasazerowie *get_pasazerowie();
+	//dla Autobusu
+	Autobus(string = "BRAK", string = "BMW", double = 2.2, double = 190, int = 1, double = 40, double = 60, int = 40, int = 90, int = 5, Kierowca * = NULL, Pasazerowie * = NULL);
+	~Autobus();
+	Autobus(const Autobus &);
+	void wczytaj();
+	void wyswietl();
+	Autobus & operator =(const Autobus &);
+	void jedz();
+	void kanar();
+	void przerejestruj(const string ="");
 	//dla kierowcy
-	void dodaj_kierowce(string = "brak", string = "brak", int = -1);
-	Kierowca* stworz_kierowce(string = "brak", string = "brak", int = -1);
+	void dodaj_kierowce(string = "Jan", string = "Nowak", int = 0001);
+	Kierowca* stworz_kierowce(string = "Jan", string = "Nowak", int = 0001);
 	void przypisz_kierowce(Kierowca * = NULL);
 	Kierowca * zamien_kierowce(Kierowca * = NULL);
 	//dla pasazerow
@@ -47,15 +48,14 @@ public:
 	Pasazerowie *stworz_pasazerow(int = 30, int = 80, int = 2);
 	void przypisz_pasazerow(Pasazerowie * = NULL);
 	void dodaj_pasazerow(int = 30, int =24, int =2);
-	//Pasazerowie * zamien_pasazerow(Pasazerowie * = NULL);
 	Autobus & operator --();
 	Autobus & operator ++();
 	//dla baku
-	void tankuj(double = 60.0);
+	Autobus & tankuj(double = 60.0);
+	Autobus & operator !();
 	//dla silnika
 	bool operator > (const Autobus &) const;
 	bool operator < (const Autobus &) const;
-	Autobus operator !();
 	Autobus operator -();
 	void operator <<(Autobus &);
 };

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <vector> 
-//#include <bits/stdc++.h>
 using namespace std;
 #ifndef Silnik_H
 #define Silnik_H

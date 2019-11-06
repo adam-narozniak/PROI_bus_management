@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <iomanip>
 #include "kierowca.h"
 
 using namespace std;
@@ -14,7 +15,7 @@ void Kierowca::wczytaj() {
 void Kierowca::wyswietl() {
 	cout << "Imie: " << imie<< endl;
 	cout << "Nazwisko: " << nazwisko << endl;
-	cout << "Id: " << id << endl;
+	cout << "Id: " <<setw(4)<<setfill('0')<< id << endl;
 	cout << "--------------------------------------------------" << endl;
 }
 

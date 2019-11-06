@@ -38,7 +38,6 @@ void Pasazerowie::edytuj(int n, int b, int r) {
 	else {
 		n_z_biletami = b;
 	}
-
 	n_rowerow = r;
 }
 

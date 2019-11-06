@@ -32,7 +32,7 @@ Bak::~Bak() {
 }
 
 void Bak::zmien_stan(double stn) {
-	if (stn < pojemnosc) {
+	if (stn <= pojemnosc) {
 		stan = stn;
 	}
 	else {

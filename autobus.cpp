@@ -62,6 +62,19 @@ void Autobus::jedz() {//kierowca musi byc rozny od NULL
 		}
 	}
 }
+void Autobus::kanar() {
+	if (pasazerowie == NULL) {
+		cout << "Operacja nie jest mozliwa, najpierw dodaj pasazerow" << endl;
+	}
+	else{
+		int z_biletami = this->pasazerowie->get_n_z_biletami();
+		this->edytuj_pasazerow(z_biletami, z_biletami, this->pasazerowie->get_n_rowerow());
+	}
+}
+void Autobus::przerejestruj(const string rej) {
+	this->nr_rej = rej;
+}
+
 
 Autobus::Autobus(string r, string m, double p, double mo, int t, double s, double po, int m1, int m2, int m3, Kierowca * k, Pasazerowie * pa) {// , int p1, int p2, int p3){
 	//konstruktor, gdzie silnik, bak oraz miejsca tworzone automotycznie, a bak i pasazerowie dynamicznie
@@ -71,7 +84,7 @@ Autobus::Autobus(string r, string m, double p, double mo, int t, double s, doubl
 	bak = new Bak(s, po);
 	kierowca = k;
 	miejsca = new Miejsca(m1, m2, m3);
-	pasazerowie = pa;//new Pasazerowie;// (p1, p2, p3);
+	pasazerowie = pa;
 
 }
 
@@ -264,12 +277,12 @@ Kierowca * Autobus::zamien_kierowce(Kierowca *k) {
 	kierowca = k;
 	return temp;
 }
-
-void Autobus::tankuj(double ile) {
+Autobus & Autobus::tankuj(double ile) {
 	if (ile < bak->get_stan()) {
 		cout << "Takowanie tylko do wiekszego stanu niz obeczny" << endl;
 	}
 	bak->zmien_stan(ile);
+	return *this;
 }
 
 //gety
@@ -316,8 +329,14 @@ bool Autobus::operator < (const Autobus &a) const {
 	}
 }
 
-Autobus Autobus::operator !() {
-	if (this->pasazerowie == NULL & this->kierowca == NULL) {
+Autobus & Autobus::operator !() {
+	/*Autobus * p = new Autobus(*this);
+	p->tankuj(this->bak->get_pojemnosc());
+	return *p;*/
+	this->tankuj(this->bak->get_pojemnosc());
+	return *this;
+	//return *this;
+	/*if (this->pasazerowie == NULL & this->kierowca == NULL) {
 		return Autobus(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
 			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
 			NULL, NULL);
@@ -341,10 +360,17 @@ Autobus Autobus::operator !() {
 		return Autobus(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
 			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
 			k, p);
-	}
+	}*/
 
 }
-Autobus & Autobus::operator =(const Autobus &) {
+Autobus & Autobus::operator =(const Autobus &p) {
+	nr_rej = p.nr_rej;
+	marka = p.marka;
+	silnik = p.silnik;
+	bak = p.bak;
+	kierowca = p.kierowca;
+	miejsca = p.miejsca;
+	pasazerowie = p.pasazerowie;
 	return *this;
 }
 
@@ -389,7 +415,7 @@ Autobus & Autobus::operator --() {
 }
 Autobus & Autobus::operator ++() {
 	if (pasazerowie != NULL) {
-		if (pasazerowie->get_n_rowerow() + 1 >= miejsca->get_miejsca_rowery()) {
+		if (pasazerowie->get_n_rowerow() + 1 <= miejsca->get_miejsca_rowery()) {
 			Pasazerowie * p = new Pasazerowie(this->pasazerowie->get_n_pasazerow(), this->pasazerowie->get_n_z_biletami(), this->pasazerowie->get_n_rowerow() + 1);
 			delete this->pasazerowie;
 			this->pasazerowie = p;
@@ -405,11 +431,15 @@ Autobus & Autobus::operator ++() {
 
 
 
-void Autobus::operator <<(Autobus &p) {//przesiadka z p do this: wychodza z p, wchodza do this
+void  Autobus::operator <<(Autobus &p) {//przesiadka z p do this: wychodza z p, wchodza do this
 	if (p.pasazerowie == NULL) {
 		cout << "Operacja niemozliwa, dodaj napierw pasazerow, Obecnie nikt nie moze przejsc poniewaz nie ma pasazerow w autobusie z ktorego mieliby przejsc" << endl;
 	}
 	else if (this->pasazerowie == NULL) {
+		if (this->kierowca == NULL) {
+			cout << "Najpierw dodaj kierowce" << endl;
+			return;
+		}
 		Pasazerowie * p_new = stworz_pasazerow(p.pasazerowie->get_n_pasazerow(), p.pasazerowie->get_n_z_biletami(), p.pasazerowie->get_n_rowerow());
 		this->pasazerowie = p_new;
 		p.edytuj_pasazerow(p.pasazerowie->get_n_pasazerow() - this->pasazerowie->get_n_pasazerow(), p.pasazerowie->get_n_z_biletami() - this->pasazerowie->get_n_z_biletami(),

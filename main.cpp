@@ -10,21 +10,19 @@
 #include "test.h"
 using namespace std;
 
-void test();
+
 void test_konsturkora_kopiujacego();
 
 void test_podklas();
 
 void test_operatorow();
-void test_porownania_mocy();
-void test_tankowania_do_pelna();
 void test_dodawania_rowerow();
 void test_operatorow_incrementacji();
 void test_przesiadki();
 void test_edycji_pasazerow();
 
 int main(void) {
-#ifdef _DEBUG1
+#ifdef _DEBUG
 	test_operatorow();
 #endif
 
@@ -34,7 +32,9 @@ int main(void) {
 	a1.jedz();
 	a1.wyswietl();*/
 
-	test();
+	//test();
+
+
 	//test_tankowania_do_pelna();
 
 	//test_podklas();
@@ -46,48 +46,7 @@ int main(void) {
 
 }
 
-void test() {
-	cout << "Funkcja testujaca" << endl;
-	cout << "--------------------------------------------------" << endl;
-	cout << "Tworze podstawowa klase Autobus" << endl;
-	cout << "--------------------------------------------------" << endl;
-	Autobus a1("WW0000", "BMW", 2.2, 190, 1, 80, 100, 30, 50, 3);
-	a1.wyswietl();
-	//kierowca
-	a1.dodaj_kierowce();
-	cout << "KOPIA" << endl;
-	Autobus a2(a1);
-	cout << "AUTOBUS 2" << endl;
-	cout << "AUTOBUS 2 - JEDZ" << endl;
-	a2.jedz();
-	a2.wyswietl();
-	cout << "--------------------------------------------------" << endl;
-	cout << "TANKOWANIE KOPII" << endl;
-	a2.tankuj(90);
-	cout << "PASAZEROWIE W A2" << endl;
-	a2.dodaj_pasazerow(30, 24, 1);
-	a2.wyswietl();
 
-
-
-	/*cout << "Test kostruktora kopiujacego" << endl;
-	Autobus autobus02(autobus01);
-	autobus02.wyswietl();
-	cout << "Modyfikacja drugiego (nowo powstalego obiektu)" << endl;
-	autobus02.wczytaj();
-	cout << "Porownanie dwoch obiektow (w celu sprawdzenia ze dzialam na nowo powstalym obiekcie, a nie na starym do ktorego mam wskaznik" << endl;
-	cout << "-------------------01-------------------------------" << endl;
-	autobus01.wyswietl();
-	cout << "-------------------02-------------------------------" << endl;
-	autobus02.wyswietl();
-	cout << "--------------------------------------------------" << endl;*/
-
-
-
-
-
-
-}
 void test_podklas() {
 	cout << endl;
 	Silnik silnik01(1.9, 130, 1);
@@ -107,21 +66,8 @@ void test_podklas() {
 	cout << endl;
 }
 
-void test_porownania_mocy() {//dziala 
-	Autobus a1("ww0012", "mercedes", 2.2, 190, 1);
-	Autobus a2("wk3465", "bmw", 2.2, 200, 2);
-	bool test;
-	test = a1 > a2;
-	cout << test << endl;
-}
 
-void test_tankowania_do_pelna() {
-	//wymaga poprawki potem
-	Autobus a1("ww0012", "mercedes", 2.2, 190, 1, 10, 60);
-	a1.wyswietl();
-	a1 = !a1;
-	a1.wyswietl();
-}
+
 void test_konsturkora_kopiujacego() {
 	cout << "KONSTRUKTOR KOPIUJACY kopia 1 w 2" << endl;
 	Autobus a1("ww0012", "mercedes", 2.2, 190, 1, 10, 60);
@@ -136,16 +82,23 @@ void test_konsturkora_kopiujacego() {
 	a2.wyswietl();
 }
 void test_operatorow_incrementacji() {
-
+	Autobus a1("WW0000", "BMW", 2.2, 190, 1, 80, 100, 30, 50, 3);
+	a1.wyswietl();
+	++a1;
+	a1.wyswietl();
 }
 void test_dodawania_rowerow() {
 	Autobus a1;
 	cout << "Proba przypisania bez kierowcy" << endl;
+	++a1;
 	a1.dodaj_kierowce("Janek", "Nowak", 12345);
 	a1.dodaj_pasazerow(30, 24, 2);
 	a1.wyswietl();
 	cout << "DODANIE ROWERU" << endl;
 	++a1;
+	a1.wyswietl();
+	cout << "ODJECIE ROWERU" << endl;
+	--a1;
 	a1.wyswietl();
 
 }
@@ -172,11 +125,11 @@ void test_edycji_pasazerow() { // obecnie nie mozliwa w uzyciu, metoda prywatna,
 	a1.wyswietl();
 }
 void test_operatorow() {
-	test_porownania_mocy();
-	test_tankowania_do_pelna();
+	//test_porownania_mocy();
+	//test_tankowania_do_pelna();
 	test_dodawania_rowerow();
-	test_operatorow_incrementacji();
-	test_przesiadki();
-	test_edycji_pasazerow();
+	//test_operatorow_incrementacji();
+	//test_przesiadki();
+	//test_edycji_pasazerow();
 
 }
