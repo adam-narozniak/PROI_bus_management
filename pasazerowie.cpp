@@ -30,6 +30,17 @@ Pasazerowie::Pasazerowie(int n, int b, int r) {
 	
 	n_rowerow= r;
 }
+void Pasazerowie::edytuj(int n, int b, int r) {
+	n_pasazerow = n;
+	if (b > n) {
+		n_z_biletami = n;
+	}
+	else {
+		n_z_biletami = b;
+	}
+
+	n_rowerow = r;
+}
 
 Pasazerowie::~Pasazerowie() {
 	cout << "Destruktor Pasazerowie wlaczony" << endl;

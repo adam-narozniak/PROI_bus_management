@@ -12,6 +12,7 @@ public:
 	~Pasazerowie();
 	void wczytaj();
 	void wyswietl();
+	void edytuj(int = 30, int = 24, int = 2);
 
 	int get_n_pasazerow();
 	int get_n_z_biletami();

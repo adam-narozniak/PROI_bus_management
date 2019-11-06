@@ -4,8 +4,9 @@
 #include "silnik.h"
 
 using namespace std;
+const char * Silnik::typy_silnika[] = { "nie podano", "diesel", "benzyna", "inny" };
 void Silnik::wczytaj() {
-	cout << "Podaj pojemnosc, moc, typ" << endl;
+	cout << "Podaj pojemnosc, moc, typ (1 - diesel, 2 - benzyna, 3 - inny" << endl;
 	cin >> pojemnosc;
 	cin >> moc;
 	cin >> typ;
@@ -14,7 +15,7 @@ void Silnik::wczytaj() {
 void Silnik::wyswietl() {
 	cout << "Pojemnosc: " << pojemnosc << "L"<< endl;
 	cout << "Moc: " << moc<<"KM"<< endl;
-	cout << "Typ: " << typ << endl;
+	cout << "Typ: " << typy_silnika[typ] << endl;
 	cout << "--------------------------------------------------" << endl;
 }
 
@@ -27,6 +28,9 @@ Silnik::Silnik(Silnik &silnik) {
 Silnik::Silnik(double p, double m, int t) {
 	pojemnosc = p;
 	moc = m;
+	if (t < 1 || t>3) {
+		t = 0;
+	}
 	typ = t;
 }
 

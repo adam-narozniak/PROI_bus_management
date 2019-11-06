@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "kierowca.h"
 #include "miejsca.h"
 #include "Bak.h"
@@ -8,8 +9,9 @@
 #ifndef Autobus_H
 #define Autobus_H
 using namespace std;
-
 class Autobus {
+
+private:
 	string nr_rej;
 	string marka;
 	Silnik * silnik;
@@ -17,7 +19,7 @@ class Autobus {
 	Kierowca *kierowca;
 	Miejsca *miejsca;
 	Pasazerowie *pasazerowie;
-
+	
 public:
 	//dla Autobusu
 	Autobus(string = "BRAK", string = "BMW", double = 2.2, double = 190, int = 1, double = 40, double = 60, int = 30, int = 80, int = 2, Kierowca * = NULL, Pasazerowie * = NULL);// , int = 30, int = 24, int = 2);
@@ -26,6 +28,7 @@ public:
 	void wczytaj();
 	void wyswietl();
 	Autobus & operator =(const Autobus &);
+	void jedz();
 	//gety
 	string get_nr_rej();
 	string get_marka();
@@ -40,6 +43,7 @@ public:
 	void przypisz_kierowce(Kierowca * = NULL);
 	Kierowca * zamien_kierowce(Kierowca * = NULL);
 	//dla pasazerow
+	void edytuj_pasazerow(int = 30, int = 24, int = 2);
 	Pasazerowie *stworz_pasazerow(int = 30, int = 80, int = 2);
 	void przypisz_pasazerow(Pasazerowie * = NULL);
 	void dodaj_pasazerow(int = 30, int =24, int =2);
@@ -53,7 +57,6 @@ public:
 	bool operator < (const Autobus &) const;
 	Autobus operator !();
 	Autobus operator -();
-	
-
+	void operator <<(Autobus &);
 };
 #endif

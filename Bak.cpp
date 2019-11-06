@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
 #include <string>
 #include "bak.h"
@@ -11,13 +12,18 @@ void Bak::wczytaj() {
 }
 
 void Bak::wyswietl() {
-	cout << "Stan obecny(ilosc paliwa w baku): " << stan << endl;
-	cout << "Pojemnosc: " << pojemnosc << endl;
+	cout << "Stan obecny(ilosc paliwa w baku): "<<setprecision(2)<<fixed << stan << endl;
+	cout << "Pojemnosc: " << setprecision(2)<<fixed<< pojemnosc << endl;
 	cout << "--------------------------------------------------" << endl;
 }
 
 Bak::Bak(double stn, double poj) {
-	stan = stn;
+	if (stn <= poj) {
+		stan = stn;
+	}
+	else {
+		stan = poj;
+	}
 	pojemnosc = poj;
 }
 

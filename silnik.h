@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector> 
 //#include <bits/stdc++.h>
 using namespace std;
@@ -10,6 +11,7 @@ class Silnik {
 	int typ;
 public:
 	//static vector <string> typ_silnika;
+	static const char * typy_silnika[];
 	Silnik(double pojemnosc = 2.2, double moc = 190, int typ = 1);
 	Silnik(Silnik &);
 	~Silnik();
