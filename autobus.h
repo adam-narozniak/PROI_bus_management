@@ -29,7 +29,8 @@ public:
 	Miejsca *get_miejsca();
 	Pasazerowie *get_pasazerowie();
 	//dla Autobusu
-	Autobus(string = "BRAK", string = "BMW", double = 2.2, double = 190, int = 1, double = 40, double = 60, int = 40, int = 90, int = 5, Kierowca * = NULL, Pasazerowie * = NULL);
+	Autobus(string = "BRAK", string = "BMW", double = 2.2, double = 190, int = 1, double = 40, double = 60, 
+		int = 40, int = 90, int = 5, Kierowca * = NULL, Pasazerowie * = NULL);
 	~Autobus();
 	Autobus(const Autobus &);
 	void wczytaj();
@@ -56,7 +57,7 @@ public:
 	//dla silnika
 	bool operator > (const Autobus &) const;
 	bool operator < (const Autobus &) const;
-	Autobus operator -();
+	Autobus & operator -();
 	void operator <<(Autobus &);
 };
 #endif

@@ -3,7 +3,6 @@
 #include <cstdlib>
 #include <string>
 
-
 using namespace std;
 
 void Autobus::wczytaj() {
@@ -230,7 +229,7 @@ void Autobus::dodaj_pasazerow(int a, int b, int r) {
 	}
 }
 
-void Autobus::edytuj_pasazerow(int a, int b, int r) {//specjalnie pod przesiadki, metoda private
+void Autobus::edytuj_pasazerow(int a, int b, int r) {//specjalnie pod przesiadki
 	if (this->pasazerowie == NULL) {
 		cout << "Metoda edytuj pasazerow uzyta nieprawaidlowo - pasazerowie == NULL" << endl;
 		return;
@@ -374,16 +373,19 @@ Autobus & Autobus::operator =(const Autobus &p) {
 	return *this;
 }
 
-Autobus Autobus::operator -() {
-	if (this->pasazerowie = NULL) {
-		cout << "Pasazerowie nie moga wyjsc z autobusu, poniewaz Pasazerowie nie zostali przypisani do autobusu, zwracam autobus o wart domyslnych" << endl;
-		Autobus a;
-		return a;
+Autobus & Autobus::operator -() {
+	if (this->pasazerowie == NULL) {
+		cout << "Pasazerowie nie moga wyjsc z autobusu, poniewaz Pasazerowie nie zostali przypisani do autobusu" << endl;
+		return *this;
 		/*(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
 			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
 			this->kierowca, this->pasazerowie);*/
 	}
-	else if (kierowca == NULL) {
+	else {
+		this->edytuj_pasazerow(0, 0, 0);
+		return *this;
+	}
+	/*else if (kierowca == NULL) {
 		Pasazerowie * p = new Pasazerowie(0, 0, 0);
 
 		return Autobus(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
@@ -396,16 +398,15 @@ Autobus Autobus::operator -() {
 		return Autobus(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
 			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
 			k, p);
-	}
+	}*/
+	
 }
 Autobus & Autobus::operator --() {
 	if (pasazerowie != NULL) {
 		if (pasazerowie->get_n_rowerow() - 1 >= 0) {
-			Pasazerowie * p = new Pasazerowie(this->pasazerowie->get_n_pasazerow(), this->pasazerowie->get_n_z_biletami(), this->pasazerowie->get_n_rowerow() - 1);
-			delete this->pasazerowie;
-			this->pasazerowie = p;
-			return *this;
+			edytuj_pasazerow(this->pasazerowie->get_n_pasazerow(), this->pasazerowie->get_n_z_biletami(), this->pasazerowie->get_n_rowerow() - 1);
 		}
+		return *this;
 	}
 	else {
 		cout << "Stworz najpierw pasazerow" << endl;
@@ -416,11 +417,9 @@ Autobus & Autobus::operator --() {
 Autobus & Autobus::operator ++() {
 	if (pasazerowie != NULL) {
 		if (pasazerowie->get_n_rowerow() + 1 <= miejsca->get_miejsca_rowery()) {
-			Pasazerowie * p = new Pasazerowie(this->pasazerowie->get_n_pasazerow(), this->pasazerowie->get_n_z_biletami(), this->pasazerowie->get_n_rowerow() + 1);
-			delete this->pasazerowie;
-			this->pasazerowie = p;
-			return *this;
+			edytuj_pasazerow(this->pasazerowie->get_n_pasazerow(), this->pasazerowie->get_n_z_biletami(), this->pasazerowie->get_n_rowerow() + 1);
 		}
+		return *this;
 	}
 	else {
 		cout << "Stworz najpierw pasazerow" << endl;
