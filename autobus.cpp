@@ -133,12 +133,6 @@ Kierowca * Autobus::stworz_kierowce(string im, string n, int i) {
 Pasazerowie * Autobus::stworz_pasazerow(int a, int b, int r) {
 	//funkcja do tworzenia pasazerow, ktora sprawdza jak miejsca na to pozwalaja
 
-	/*if (n > (miejsca->get_miejsca_normalne() + miejsca->get_miejsca_stojace()) || r > miejsca->get_miejsca_rowery()) {
-		n = miejsca->get_miejsca_normalne() + miejsca->get_miejsca_stojace();
-		b = n;
-		r = miejsca->get_miejsca_rowery();
-	}
-	Pasazerowie * p = new Pasazerowie(n, b, r);*/
 	int dostepne_miejsca = this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace();
 	bool pa = (a <= dostepne_miejsca);
 	int r_mozliwe = this->miejsca->get_miejsca_rowery();
@@ -198,19 +192,6 @@ void Autobus::dodaj_pasazerow(int a, int b, int r) {
 		cout << "Aby dodac pasazerow najpierw dodaj kierowce" << endl;
 		return;
 	}
-	/*int dostepne_miejsca = this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace();
-	bool pa = (a <= dostepne_miejsca);
-	int r_mozliwe = this->miejsca->get_miejsca_rowery();
-	bool ro = (r <= r_mozliwe);
-	if (pa && ro) {
-		Pasazerowie * p = stworz_pasazerow(a, b, r);
-	}
-	else if (pa && ~ro) {
-		Pasazerowie * p = stworz_pasazerow(a, b, r_mozliwe);
-	}
-	else if (~pa && ro) {
-		Pasazerowie * p = stworz_pasazerow(dostepne_miejsca, dostepne_miejsca, r);
-	}*/
 
 	Pasazerowie * p = stworz_pasazerow(a, b, r);
 	if (p != NULL && pasazerowie == NULL) {
@@ -334,32 +315,6 @@ Autobus & Autobus::operator !() {
 	return *p;*/
 	this->tankuj(this->bak->get_pojemnosc());
 	return *this;
-	//return *this;
-	/*if (this->pasazerowie == NULL & this->kierowca == NULL) {
-		return Autobus(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
-			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
-			NULL, NULL);
-	}
-	else if (this->pasazerowie == NULL) {
-		Kierowca * k = new Kierowca(this->kierowca->get_imie(), this->kierowca->get_nazwisko(), this->kierowca->get_id());
-		return Autobus(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
-			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
-			k, NULL);
-	}
-	else if (this->kierowca == NULL) {
-		Pasazerowie * p = new Pasazerowie(this->pasazerowie->get_n_pasazerow(), this->pasazerowie->get_n_z_biletami(), this->pasazerowie->get_n_rowerow());
-		Kierowca * k = new Kierowca(this->kierowca->get_imie(), this->kierowca->get_nazwisko(), this->kierowca->get_id());
-		return Autobus(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
-			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
-			NULL, p);
-	}
-	else {
-		Pasazerowie * p = new Pasazerowie(this->pasazerowie->get_n_pasazerow(), this->pasazerowie->get_n_z_biletami(), this->pasazerowie->get_n_rowerow());
-		Kierowca * k = new Kierowca(this->kierowca->get_imie(), this->kierowca->get_nazwisko(), this->kierowca->get_id());
-		return Autobus(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
-			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
-			k, p);
-	}*/
 
 }
 Autobus & Autobus::operator =(const Autobus &p) {
@@ -377,28 +332,12 @@ Autobus & Autobus::operator -() {
 	if (this->pasazerowie == NULL) {
 		cout << "Pasazerowie nie moga wyjsc z autobusu, poniewaz Pasazerowie nie zostali przypisani do autobusu" << endl;
 		return *this;
-		/*(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
-			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
-			this->kierowca, this->pasazerowie);*/
+
 	}
 	else {
 		this->edytuj_pasazerow(0, 0, 0);
 		return *this;
 	}
-	/*else if (kierowca == NULL) {
-		Pasazerowie * p = new Pasazerowie(0, 0, 0);
-
-		return Autobus(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
-			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
-			NULL, p);
-	}
-	else {
-		Pasazerowie * p = new Pasazerowie(0, 0, 0);
-		Kierowca * k = new Kierowca(this->kierowca->get_imie(), this->kierowca->get_nazwisko(), this->kierowca->get_id());
-		return Autobus(this->nr_rej, this->marka, this->silnik->get_pojemnosc(), this->silnik->get_moc(), this->silnik->get_typ(), this->bak->get_pojemnosc(),
-			this->bak->get_pojemnosc(), this->miejsca->get_miejsca_normalne(), this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery(),
-			k, p);
-	}*/
 	
 }
 Autobus & Autobus::operator --() {
@@ -443,38 +382,18 @@ void  Autobus::operator <<(Autobus &p) {//przesiadka z p do this: wychodza z p, 
 		this->pasazerowie = p_new;
 		p.edytuj_pasazerow(p.pasazerowie->get_n_pasazerow() - this->pasazerowie->get_n_pasazerow(), p.pasazerowie->get_n_z_biletami() - this->pasazerowie->get_n_z_biletami(),
 			p.pasazerowie->get_n_rowerow() - this->pasazerowie->get_n_rowerow());
-		/*if (this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace() >= p.pasazerowie->get_n_pasazerow() && this->miejsca->get_miejsca_rowery()>=p.pasazerowie->get_n_rowerow()) {
-			Pasazerowie * p_new = new Pasazerowie(p.pasazerowie->get_n_pasazerow(), p.pasazerowie->get_n_z_biletami(), p.pasazerowie->get_n_rowerow());
-			this->pasazerowie = p_new;
-		}
-		else{//zakladam ze wszyscy maja bilety
-			if (this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace() < p.pasazerowie->get_n_pasazerow() && this->miejsca->get_miejsca_rowery() < p.pasazerowie->get_n_rowerow()) {
-				Pasazerowie * p_new = new Pasazerowie(this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_rowery());
-				this->pasazerowie = p_new;
-			}
-			else if (this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace() < p.pasazerowie->get_n_pasazerow() && ~(this->miejsca->get_miejsca_rowery() < p.pasazerowie->get_n_rowerow())) {
-				//jesli tylko miejsc jest mniej a rowery w porzadku
-				Pasazerowie * p_new = new Pasazerowie(this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace(), this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace(), p.pasazerowie->get_n_rowerow());
-				this->pasazerowie = p_new;
-			}
 
-			else if (~(this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace() < p.pasazerowie->get_n_pasazerow() && this->miejsca->get_miejsca_rowery()) < p.pasazerowie->get_n_rowerow()) {
-				//jesli miejsca ok, ale za malo miejsc na rowery
-				Pasazerowie * p_new = new Pasazerowie(p.pasazerowie->get_n_pasazerow(), p.pasazerowie->get_n_z_biletami(), this->miejsca->get_miejsca_rowery());
-				this->pasazerowie = p_new;
-			}
-		}	*/
 	}
 	else {
 		int a0, b0, r0;
 		a0 = this->pasazerowie->get_n_pasazerow();
-		b0 = this->pasazerowie->get_n_z_biletami();//potencjalne bugi !!!
+		b0 = this->pasazerowie->get_n_z_biletami();
 		r0 = this->pasazerowie->get_n_rowerow();
-		//if (this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace() >= p.pasazerowie->get_n_pasazerow()) {
+
 		this->edytuj_pasazerow(p.pasazerowie->get_n_pasazerow(), p.pasazerowie->get_n_z_biletami(), p.pasazerowie->get_n_rowerow());
 		p.edytuj_pasazerow(p.pasazerowie->get_n_pasazerow() - this->pasazerowie->get_n_pasazerow()+a0, p.pasazerowie->get_n_z_biletami() - this->pasazerowie->get_n_z_biletami() +b0,
 			p.pasazerowie->get_n_rowerow() - this->pasazerowie->get_n_rowerow()+r0);
-		//}
+		
 
 	}
 

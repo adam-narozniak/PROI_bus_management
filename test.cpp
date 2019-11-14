@@ -9,7 +9,9 @@
 #include "pasazerowie.h"
 #include "test.h"
 #include "test.h"
+#include <stdlib.h>
 void test() {
+	char stop;
 	cout << "Funkcja testujaca" << endl;
 	cout << "--------------------------------------------------" << endl;
 	cout << "Tworze podstawowa klase Autobus" << endl;
@@ -38,6 +40,7 @@ void test() {
 		Autobus a3("WW0001", "Mercedes", 2.4, 180, 1, 80, 100, 30, 50, 3);
 		a3.wyswietl();
 	}
+	cin >> stop;
 	cout << "DYNAMICZNIE" << endl;
 	Autobus * pa;
 	pa = new Autobus("WW 0932");
@@ -149,6 +152,7 @@ void test_wysiadki() {
 	a2.wyswietl();
 }
 void test_operatorow() {
+	
 	test_porownania_mocy();
 	test_tankowania_do_pelna();
 	test_dodawania_rowerow();

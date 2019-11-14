@@ -14,5 +14,6 @@ int main(void) {
 #ifdef _DEBUG
 	test_operatorow();
 #endif
+	//test();
 
 }

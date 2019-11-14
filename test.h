@@ -10,5 +10,5 @@ void test_wysiadki();
 void test_operatorow();
 void test_dodawania_rowerow();
 void test_przesiadki();
-
+void clear();
 #endif
