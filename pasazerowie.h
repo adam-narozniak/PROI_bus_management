@@ -3,7 +3,6 @@ using namespace std;
 #ifndef Pasazerowie_H
 #define Pasazerowie_H
 class Pasazerowie {
-
 	int n_pasazerow;
 	int n_z_biletami;
 	int n_rowerow;;
