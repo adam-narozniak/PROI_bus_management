@@ -6,9 +6,9 @@
 using namespace std;
 void Miejsca::wczytaj() {
 	cout << "Podaj liczbe miejsc normalnych, miejsca_niepelnosprawni, miejsca_stoj¹ce" << endl;
-	cin >> miejsca_normalne;
-	cin >> miejsca_stojace;
-	cin >> miejsca_rowery;
+	cin >> this->miejsca_normalne;
+	cin >> this->miejsca_stojace;
+	cin >> this->miejsca_rowery;
 }
 
 void Miejsca::wyswietl() {
@@ -31,6 +31,25 @@ ostream& operator<<(ostream& str, const Miejsca& m) {
 		str << m.miejsca_normalne << endl;
 		str << m.miejsca_stojace << endl;
 		return str << m.miejsca_rowery << endl;
+	}
+}
+istream& operator>> (istream& str, Miejsca &m) {
+	char tab[20];
+	int size = sizeof(tab) / sizeof(tab[0]);
+	if (&str == &std::cin) {
+		m.wczytaj();
+	}
+	else {
+		str.getline(tab, size);
+		if (!strcmp(tab, "NULL")) {
+			return str;
+		}
+		m.miejsca_normalne = stoi(tab);
+		str.getline(tab, size);
+		m.miejsca_stojace = atoi(tab);
+		str.getline(tab, size);
+		m.miejsca_rowery = stoi(tab);
+		return str;
 	}
 }
 

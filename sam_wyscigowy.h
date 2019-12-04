@@ -11,7 +11,9 @@ private:
 public:
 	Sam_wyscigowy(string = "BRAK", string = "Mustang", double = 2.5, double = 321, int = 2, double = 57, double = 60, string = "0 Rh-");
 	void wyswietl();
-	void zapisz(string = "output.txt");
+	void zapisz(string = "outputw.txt");
+	void odczytaj(string = "outputw.txt");
 	friend ostream& operator<<(ostream&, const Sam_wyscigowy &);
+	friend istream& operator>> (istream& str, Sam_wyscigowy &w);
 };
 #endif

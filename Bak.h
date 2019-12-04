@@ -15,6 +15,8 @@ public:
 	double get_pojemnosc();
 	double get_stan();
 	friend ostream& operator<<(ostream&, const Bak&);
+	friend istream& operator>> (istream& str, Bak &b);
+
 
 };
 #endif

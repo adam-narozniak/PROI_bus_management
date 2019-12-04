@@ -100,9 +100,51 @@ ostream& operator<<(ostream& str, const Autobus& a) {
 		return str << endl;
 	}
 }
+istream& operator>> (istream& str, Autobus &a) {
+	char tab[20];
+	int size = sizeof(tab) / sizeof(tab[0]);
+	if (&str == &std::cin) {
+		1;
+	}
+	else {
+		str.getline(tab, size);
+		if (strcmp(tab, "AUTOBUS")) {
+			cout << "Plik nie zawiera danych ktore chcesz wczytac" << endl;
+			return str;
+		}
+		else {
+			str.getline(tab, size);
+			a.nr_rej = tab;
+			str.getline(tab, size);
+			a.marka = tab;
+			str >> *(a.silnik);
+			str >> *(a.bak);
+			/*if (a.kierowca == NULL) {
+				a.dodaj_kierowce();
+			}*/
+			str >> *(a.kierowca);
+			str >> *(a.miejsca);
+			/*if (a.pasazerowie == NULL) {
+				a.dodaj_pasazerow();
+			}*/
+			return str >> *(a.pasazerowie);
+		}
+
+
+	}
+}
 void Autobus::zapisz(string s) {
 	ofstream plik(s);
 	plik << *this << endl;
+	plik.close();
+}
+void Autobus::odczytaj(string s) {
+	ifstream plik(s);
+	if (!plik.is_open()) {
+		cout << "Bledna nazwa pliku" << endl;
+		return;
+	}
+	plik >> *this;
 	plik.close();
 }
 

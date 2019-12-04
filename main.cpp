@@ -30,15 +30,33 @@ int main(void) {
 	a1.dodaj_kierowce();
 	a1.dodaj_pasazerow();
 	cout << a1;*/
-	/*Samochod s;
+	/*
 	cout << s << endl;
 	s.zapisz();*/
-	/*ofstream plik("output.txt");
-	plik << s << endl;
-	plik.close();*/
-	Autobus a1;
-	cout << a1 << endl;
+	/*Sam_wyscigowy s("WK 00123", "Audi", 1.23, 130, 1, 20, 34);
+	ofstream plik1("output.txt");
+	plik1 << s << endl;
+	plik1.close();
+	
+	ifstream plik("output.txt");
+	Samochod s1;
+	plik >> s1;
+	plik.close();
+	cout << s1 << endl;*/
+	/*Autobus a1("WWA 9324", "Mercedes", 2.34, 100,1, 34,80,34,80,6);
+	a1.dodaj_kierowce("Jack", "Sparrow",23);
 	a1.zapisz();
+	Autobus a2;
+	a2.dodaj_kierowce();
+	ifstream plik("output.txt");
+	plik >> a2;
+	plik.close();
+	cout << a1;
+	Pojazd *p[2];
+	p[0] = &a1;
+	p[1] = &a2;
+	p[0]->zapisz("outputa.txt");*/
+
 
 
 }

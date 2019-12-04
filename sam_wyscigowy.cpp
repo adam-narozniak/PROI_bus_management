@@ -13,6 +13,15 @@ void Sam_wyscigowy::zapisz(string s) {
 	plik << *this << endl;
 	plik.close();
 }
+void Sam_wyscigowy::odczytaj(string s) {
+	ifstream plik(s);
+	if (!plik.is_open()) {
+		cout << "Bledna nazwa pliku" << endl;
+		return;
+	}
+	plik >> *this;
+	plik.close();
+}
 void Sam_wyscigowy::wyswietl() {
 	this->Samochod::wyswietl();
 	cout << "Grupa krwii: " << gr_krwi << endl;
@@ -29,5 +38,26 @@ ostream& operator<<(ostream& str, const Sam_wyscigowy & w) {
 		str << "SAM_WYSCIGOWY" << endl;
 		str << (Samochod)w;
 		return str << w.gr_krwi << endl;
+	}
+}
+istream& operator>> (istream& str, Sam_wyscigowy &w) {
+	char tab[20];
+	int size = sizeof(tab) / sizeof(tab[0]);
+	if (&str == &std::cin) {
+		1;
+	}
+	else {
+		str.getline(tab, size);
+		if (strcmp(tab, "SAM_WYSCIGOWY")) {
+			cout << "Plik nie zawiera danych ktore chcesz wczytac" << endl;
+			return str;
+		}
+		else {
+			str >> static_cast<Samochod &>(w);
+			str.getline(tab, size);
+			w.gr_krwi = tab;
+		}
+
+
 	}
 }

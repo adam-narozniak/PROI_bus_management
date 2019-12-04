@@ -12,11 +12,11 @@ public:
 
 	virtual void wyswietl() = 0;
 	virtual void jedz() = 0;
-	//virtual void zapisz() = 0;
-	//virtual void odczytaj() = 0;
-	/*virtual void tankuj(double = 60.0) = 0;
+	virtual void zapisz(string) = 0;
+	virtual void odczytaj() = 0;
+	virtual void tankuj(double = 60.0) = 0;
 	
-	virtual void przerejestruj(const string = "new") = 0;*/
+	/*virtual void przerejestruj(const string = "new") = 0;*/
 };
 
 //ostream& operator<<(ostream&, const Pojazd&) = 0;

@@ -35,6 +35,24 @@ ostream& operator<<(ostream& str, const Pasazerowie& p) {
 		return str << p.n_rowerow << endl;
 	}
 }
+istream& operator>> (istream& str, Pasazerowie &p) {
+	char tab[20];
+	int size = sizeof(tab) / sizeof(tab[0]);
+	if (&str == &std::cin) {
+	}
+	else {
+		str.getline(tab, size);
+		if (!strcmp(tab, "NULL")) {
+			return str;
+		}
+		p.n_pasazerow= stoi(tab);
+		str.getline(tab, size);
+		p.n_z_biletami = atoi(tab);
+		str.getline(tab, size);
+		p.n_rowerow = stoi(tab);
+		return str;
+	}
+}
 
 Pasazerowie::Pasazerowie(int n, int b, int r) {
 	n_pasazerow = n;

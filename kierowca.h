@@ -16,5 +16,6 @@ public:
 	string get_nazwisko();
 	int get_id();
 	friend ostream& operator<<(ostream&, const Kierowca&);
+	friend istream& operator>>(istream&, Kierowca&);
 };
 #endif

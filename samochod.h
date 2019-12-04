@@ -17,7 +17,9 @@ public:
 	Samochod(string = "BRAK", string = "Audi", double = 1.6, double = 120, int = 1, double = 40, double = 60);
 	void wyswietl();
 	friend ostream& operator<<(ostream&, const Samochod &);
+	friend istream& operator>>(istream&, Samochod &);
 	void jedz();
-	void zapisz(string ="output.txt");
+	void zapisz(string ="outputs.txt");
+	void odczytaj(string = "outputs.txt");
 };
 #endif

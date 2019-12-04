@@ -16,6 +16,6 @@ public:
 	int get_miejsca_stojace();
 	int get_miejsca_rowery();
 	friend ostream& operator<<(ostream&, const Miejsca&);
-
+	friend istream& operator>>(istream&, Miejsca&);
 };
 #endif

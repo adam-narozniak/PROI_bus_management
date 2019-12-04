@@ -34,7 +34,7 @@ ostream& operator<< (ostream& str, const Samochod &s) {
 	}
 	else {
 		str << "SAMOCHOD" << endl;
-		str << s.nr_rej << endl << s.marka << endl << *(s.silnik) << *(s.bak);
+		return str << s.nr_rej << endl << s.marka << endl << *(s.silnik) << *(s.bak);
 	}
 }
 void Samochod::zapisz(string s) {
@@ -42,7 +42,41 @@ void Samochod::zapisz(string s) {
 	plik << *this << endl;
 	plik.close();
 }
+void Samochod::odczytaj(string s) {
+	ifstream plik(s);
+	if (!plik.is_open()) {
+		cout << "Bledna nazwa pliku" << endl;
+		return;
+	}
+	plik >> *this;
+	plik.close();
+}
 
+istream& operator>> (istream& str,  Samochod &s) {
+	char tab[20];
+	int size = sizeof(tab) / sizeof(tab[0]);
+	if (&str == &std::cin) {
+		1;
+		cout << "Dziala" << endl;
+	}
+	else {
+		str.getline(tab, size);
+		if (strcmp(tab, "SAMOCHOD")) {
+			cout << "Plik nie zawiera danych ktore chcesz wczytac" << endl;
+			return str;
+		}
+		else {
+			str.getline(tab, size);
+			s.nr_rej = tab;
+			str.getline(tab, size);
+			s.marka = tab;
+			str >> *(s.silnik);
+			return str >> *(s.bak);
+		}
+
+
+	}
+}
 void Samochod::jedz() {
 	double delta = silnik->get_pojemnosc()*silnik->get_moc()/100;
 	if (delta > bak->get_stan()) {

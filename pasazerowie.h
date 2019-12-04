@@ -18,5 +18,6 @@ public:
 	int get_n_rowerow();
 
 	friend ostream& operator<<(ostream&, const Pasazerowie&);
+	friend istream& operator>>(istream&, Pasazerowie&);
 };
 #endif

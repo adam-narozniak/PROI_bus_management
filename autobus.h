@@ -62,6 +62,9 @@ public:
 	Autobus & operator -();
 	void operator <<(Autobus &);
 	friend ostream& operator<<(ostream&, const Autobus&);
-	void zapisz(string = "output.txt");
+	friend istream& operator>>(istream&, Autobus&);
+	void zapisz(string = "outputa.txt");
+	void odczytaj(string = "outputa.txt");
+
 };
 #endif

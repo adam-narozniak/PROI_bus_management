@@ -34,6 +34,24 @@ ostream& operator<<(ostream& str, const Kierowca& k) {
 		return str << k.id << endl;
 	}
 }
+istream& operator>> (istream& str, Kierowca &k) {
+	char tab[20];
+	int size = sizeof(tab) / sizeof(tab[0]);
+	if (&str == &std::cin) {
+	}
+	else {
+		str.getline(tab, size);
+		if (!strcmp(tab, "NULL")) {
+			return str;
+		}
+		k.imie = tab;
+		str.getline(tab, size);
+		k.nazwisko = tab;
+		str.getline(tab, size);
+		k.id = stoi(tab);
+		return str;
+	}
+}
 
 Kierowca::Kierowca(string im, string n, int i) {
 	imie = im;

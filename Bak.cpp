@@ -53,9 +53,22 @@ ostream& operator<<(ostream& str, const Bak& b) {
 		str << "Pojemnosc: " << setprecision(2) << fixed << b.pojemnosc << endl;
 		return str << "--------------------------------------------------" << endl;
 	}
-	else {//file
+	else {
 		str << b.stan << endl;
 		return str << b.pojemnosc << endl;
+	}
+}
+istream& operator>> (istream& str, Bak &b ){
+	char tab[20];
+	int size = sizeof(tab) / sizeof(tab[0]);
+	if (&str == &std::cin) {
+	}
+	else {
+		str.getline(tab, size);
+		b.stan = stod(tab);
+		str.getline(tab, size);
+		b.pojemnosc = stod(tab);
+		return str;
 	}
 }
 

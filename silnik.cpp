@@ -59,3 +59,18 @@ ostream& operator<<(ostream& str, const Silnik& s) {
 		return str << s.pojemnosc << endl << s.moc << endl << s.typ << endl;
 	}
 }
+istream& operator>> (istream& str, Silnik &s) {
+	char tab[20];
+	int size = sizeof(tab) / sizeof(tab[0]);
+	if (&str == &std::cin) {
+	}
+	else {
+		str.getline(tab, size);
+		s.pojemnosc = stod(tab);
+		str.getline(tab, size);
+		s.moc = stod(tab);
+		str.getline(tab, size);
+		s.typ = stoi(tab);
+		return str;
+	}
+}

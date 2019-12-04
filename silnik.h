@@ -19,5 +19,6 @@ public:
 	double get_moc();
 	int get_typ();
 	friend ostream& operator<<(ostream&, const Silnik&);
+	friend istream& operator>> (istream& str, Silnik &b);
 };
 #endif
