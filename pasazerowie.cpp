@@ -18,6 +18,23 @@ void Pasazerowie::wyswietl() {
 	cout << "--------------------------------------------------" << endl;
 
 }
+ostream& operator<<(ostream& str, const Pasazerowie& p) {
+	if (&p == NULL) {
+		return str << "NULL" << endl;
+
+}
+	if (&str == &std::cout) {
+		str << "Pasazerowie: " << p.n_pasazerow << endl;
+		str << "Pasazerowie z biletami: " << p.n_z_biletami << endl;
+		str << "Rowery: " << p.n_rowerow << endl;
+		return str << "--------------------------------------------------" << endl;
+	}
+	else {
+		str << p.n_pasazerow << endl;
+		str << p.n_z_biletami << endl;
+		return str << p.n_rowerow << endl;
+	}
+}
 
 Pasazerowie::Pasazerowie(int n, int b, int r) {
 	n_pasazerow = n;

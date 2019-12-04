@@ -14,5 +14,7 @@ public:
 	void zmien_stan(double = 40);
 	double get_pojemnosc();
 	double get_stan();
+	friend ostream& operator<<(ostream&, const Bak&);
+
 };
 #endif

@@ -2,6 +2,7 @@
 #include "autobus.h"
 #include <cstdlib>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -13,7 +14,6 @@ void Autobus::wczytaj() {
 
 void Autobus::wyswietl() {
 	//funkcja do wywietlenie wszytkich danych
-	cout << endl;
 	cout << "AUTOBUS" << endl;
 	cout << "--------------------------------------------------" << endl;
 	cout << "NR rejestracyjny: " << nr_rej << endl;
@@ -46,6 +46,66 @@ void Autobus::wyswietl() {
 	}
 	cout << endl;
 }
+ostream& operator<<(ostream& str, const Autobus& a) {
+	if (&str == &std::cout) {
+		str << "AUTOBUS" << endl;
+		str << "--------------------------------------------------" << endl;
+		str << "NR rejestracyjny: " << a.nr_rej << endl;
+		str << "Marka: " << a.marka << endl;
+		str << "--------------------------------------------------" << endl;
+		str << "Silnik: " << endl;
+		str << *(a.silnik);
+		str << "Bak: " << endl;
+		str << *(a.bak);
+		str << "Kierowca: " << endl;
+		if (a.kierowca == NULL) {
+			str << "Kierowca nie jest przypisany do autobusu" << endl;
+			str << "--------------------------------------------------" << endl;
+		}
+		else {
+			str << *(a.kierowca);
+		}
+		str << "Miejsca: " << endl;
+		str << *(a.miejsca);
+
+		str << "Pasazerowie: " << endl;
+		if (a.pasazerowie == NULL) {
+			str << "Brak przypisanych pasazerow" << endl;
+			str << "--------------------------------------------------" << endl;
+		}
+		else {
+			str << *(a.pasazerowie);
+		}
+		return str << endl;
+	}
+	else {
+		str << "AUTOBUS" << endl;
+		str << a.nr_rej << endl;
+		str << a.marka << endl;
+		str << *(a.silnik);
+		str << *(a.bak);
+		if (a.kierowca == NULL) {
+			str << "NULL" << endl;
+		}
+		else {
+			str << *(a.kierowca);
+		}
+		str << *(a.miejsca);
+		if (a.pasazerowie == NULL) {
+			str << "NULL" << endl;
+		}
+		else {
+			str << *(a.pasazerowie);
+		}
+		return str << endl;
+	}
+}
+void Autobus::zapisz(string s) {
+	ofstream plik(s);
+	plik << *this << endl;
+	plik.close();
+}
+
 
 void Autobus::jedz() {//kierowca musi byc rozny od NULL
 	if (kierowca == NULL) {
@@ -65,7 +125,7 @@ void Autobus::kanar() {
 	if (pasazerowie == NULL) {
 		cout << "Operacja nie jest mozliwa, najpierw dodaj pasazerow" << endl;
 	}
-	else{
+	else {
 		int z_biletami = this->pasazerowie->get_n_z_biletami();
 		this->edytuj_pasazerow(z_biletami, z_biletami, this->pasazerowie->get_n_rowerow());
 	}
@@ -257,12 +317,12 @@ Kierowca * Autobus::zamien_kierowce(Kierowca *k) {
 	kierowca = k;
 	return temp;
 }
-Autobus & Autobus::tankuj(double ile) {
+void Autobus::tankuj(double ile) {
 	if (ile < bak->get_stan()) {
 		cout << "Takowanie tylko do wiekszego stanu niz obeczny" << endl;
 	}
 	bak->zmien_stan(ile);
-	return *this;
+	//return *this;
 }
 
 //gety
@@ -338,7 +398,7 @@ Autobus & Autobus::operator -() {
 		this->edytuj_pasazerow(0, 0, 0);
 		return *this;
 	}
-	
+
 }
 Autobus & Autobus::operator --() {
 	if (pasazerowie != NULL) {
@@ -391,10 +451,8 @@ void  Autobus::operator <<(Autobus &p) {//przesiadka z p do this: wychodza z p, 
 		r0 = this->pasazerowie->get_n_rowerow();
 
 		this->edytuj_pasazerow(p.pasazerowie->get_n_pasazerow(), p.pasazerowie->get_n_z_biletami(), p.pasazerowie->get_n_rowerow());
-		p.edytuj_pasazerow(p.pasazerowie->get_n_pasazerow() - this->pasazerowie->get_n_pasazerow()+a0, p.pasazerowie->get_n_z_biletami() - this->pasazerowie->get_n_z_biletami() +b0,
-			p.pasazerowie->get_n_rowerow() - this->pasazerowie->get_n_rowerow()+r0);
-		
-
+		p.edytuj_pasazerow(p.pasazerowie->get_n_pasazerow() - this->pasazerowie->get_n_pasazerow() + a0, p.pasazerowie->get_n_z_biletami() - this->pasazerowie->get_n_z_biletami() + b0,
+			p.pasazerowie->get_n_rowerow() - this->pasazerowie->get_n_rowerow() + r0);
 	}
-
 }
+

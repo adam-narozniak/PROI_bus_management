@@ -18,5 +18,6 @@ public:
 	double get_pojemnosc();
 	double get_moc();
 	int get_typ();
+	friend ostream& operator<<(ostream&, const Silnik&);
 };
 #endif

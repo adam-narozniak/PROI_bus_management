@@ -1,0 +1,15 @@
+AUTOBUS
+BRAK
+BMW
+2.2
+190
+1
+40
+60
+NULL
+40
+90
+5
+NULL
+
+

@@ -18,6 +18,22 @@ void Kierowca::wyswietl() {
 	cout << "Id: " <<setw(4)<<setfill('0')<< id << endl;
 	cout << "--------------------------------------------------" << endl;
 }
+ostream& operator<<(ostream& str, const Kierowca& k) {
+	if (&k == NULL) {
+		return str << "NULL" << endl;
+	}
+	if (&str == &std::cout) {
+		str << "Imie: " << k.imie << endl;
+		str << "Nazwisko: " << k.nazwisko << endl;
+		str << "Id: " << setw(4) << setfill('0') << k.id << endl;
+		return str << "--------------------------------------------------" << endl;
+	}
+	else {
+		str << k.imie << endl;
+		str << k.nazwisko << endl;
+		return str << k.id << endl;
+	}
+}
 
 Kierowca::Kierowca(string im, string n, int i) {
 	imie = im;

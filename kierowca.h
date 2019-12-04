@@ -15,5 +15,6 @@ public:
 	string get_imie();
 	string get_nazwisko();
 	int get_id();
+	friend ostream& operator<<(ostream&, const Kierowca&);
 };
 #endif

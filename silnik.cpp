@@ -13,8 +13,8 @@ void Silnik::wczytaj() {
 }
 
 void Silnik::wyswietl() {
-	cout << "Pojemnosc: " << pojemnosc << "L"<< endl;
-	cout << "Moc: " << moc<<"KM"<< endl;
+	cout << "Pojemnosc: " << pojemnosc << "L" << endl;
+	cout << "Moc: " << moc << "KM" << endl;
 	cout << "Typ: " << typy_silnika[typ] << endl;
 	cout << "--------------------------------------------------" << endl;
 }
@@ -39,7 +39,7 @@ Silnik::~Silnik() {
 
 }
 
-double Silnik:: get_pojemnosc() {
+double Silnik::get_pojemnosc() {
 	return pojemnosc;
 }
 double Silnik::get_moc() {
@@ -47,4 +47,15 @@ double Silnik::get_moc() {
 }
 int Silnik::get_typ() {
 	return typ;
+}
+ostream& operator<<(ostream& str, const Silnik& s) {
+	if (&str == &std::cout) {
+		str << "Pojemnosc: " << s.pojemnosc << "L" << endl;
+		str << "Moc: " << s.moc << "KM" << endl;
+		str << "Typ: " << s.typy_silnika[s.typ] << endl;
+		return str << "--------------------------------------------------" << endl;
+	}
+	else {
+		return str << s.pojemnosc << endl << s.moc << endl << s.typ << endl;
+	}
 }

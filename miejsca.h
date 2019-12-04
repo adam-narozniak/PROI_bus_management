@@ -15,5 +15,7 @@ public:
 	int get_miejsca_normalne();
 	int get_miejsca_stojace();
 	int get_miejsca_rowery();
+	friend ostream& operator<<(ostream&, const Miejsca&);
+
 };
 #endif

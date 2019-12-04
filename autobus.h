@@ -4,17 +4,19 @@
 #include "Bak.h"
 #include "silnik.h"
 #include "pasazerowie.h"
+#include "virtualna.h"
 
 #ifndef Autobus_H
 #define Autobus_H
 using namespace std;
-class Autobus {
+class Autobus: public Pojazd {
 
-private:
+protected:
 	string nr_rej;
 	string marka;
 	Silnik * silnik;
 	Bak *bak;
+private:
 	Kierowca *kierowca;
 	Miejsca *miejsca;
 	Pasazerowie *pasazerowie;
@@ -52,12 +54,14 @@ public:
 	Autobus & operator --();
 	Autobus & operator ++();
 	//dla baku
-	Autobus & tankuj(double = 60.0);
+	void tankuj(double = 60.0);
 	Autobus & operator !();
 	//dla silnika
 	bool operator > (const Autobus &) const;
 	bool operator < (const Autobus &) const;
 	Autobus & operator -();
 	void operator <<(Autobus &);
+	friend ostream& operator<<(ostream&, const Autobus&);
+	void zapisz(string = "output.txt");
 };
 #endif

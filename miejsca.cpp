@@ -17,6 +17,22 @@ void Miejsca::wyswietl() {
 	cout << "Miejsca_rowery: " << miejsca_rowery << endl;
 	cout << "--------------------------------------------------" << endl;
 }
+ostream& operator<<(ostream& str, const Miejsca& m) {
+	if (&m == NULL) {
+		str << NULL << endl;
+	}
+	if (&str == &std::cout) {
+		str << "Miejsca_normalne: " << m.miejsca_normalne << endl;
+		str << "Miejsca_stojace: " << m.miejsca_stojace << endl;
+		str << "Miejsca_rowery: " << m.miejsca_rowery << endl;
+		return str << "--------------------------------------------------" << endl;
+	}
+	else {
+		str << m.miejsca_normalne << endl;
+		str << m.miejsca_stojace << endl;
+		return str << m.miejsca_rowery << endl;
+	}
+}
 
 Miejsca::Miejsca(int n, int s, int r){
 	miejsca_normalne = n;

@@ -16,5 +16,7 @@ public:
 	int get_n_pasazerow();
 	int get_n_z_biletami();
 	int get_n_rowerow();
+
+	friend ostream& operator<<(ostream&, const Pasazerowie&);
 };
 #endif
