@@ -5,7 +5,7 @@
 
 using namespace std;
 void Miejsca::wczytaj() {
-	
+	cin >> *this;
 }
 
 void Miejsca::wyswietl() {

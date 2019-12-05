@@ -9,16 +9,7 @@ Samochod::Samochod(string r, string m, double p, double mo, int t, double s, dou
 	nr_rej(r), marka(m), silnik(new Silnik(p, mo, t)), bak(new Bak(s, po)) {
 }
 void Samochod::wyswietl() {
-	cout << "SAMOCHOD" << endl;
-	cout << "--------------------------------------------------" << endl;
-	cout << "NR rejestracyjny: " << nr_rej << endl;
-	cout << "Marka: " << marka << endl;
-	cout << "--------------------------------------------------" << endl;
-	cout << "Silnik: " << endl;
-	silnik->wyswietl();
-	cout << "Bak: " << endl;
-	bak->wyswietl();
-	
+	cout << *this;
 }
 ostream& operator<< (ostream& str, const Samochod &s) {
 	if (&str == &std::cout) {
@@ -56,8 +47,12 @@ istream& operator>> (istream& str,  Samochod &s) {
 	char tab[20];
 	int size = sizeof(tab) / sizeof(tab[0]);
 	if (&str == &std::cin) {
-		1;
-		cout << "Dziala" << endl;
+		cout << "Podaj nr rejestracyjny oraz marke" << endl;
+		cin.getline(tab, size);
+		s.nr_rej = tab;
+		str >> s.marka;
+		str >> *(s.silnik);
+		return str >> *(s.bak);
 	}
 	else {
 		str.getline(tab, size);
@@ -73,8 +68,6 @@ istream& operator>> (istream& str,  Samochod &s) {
 			str >> *(s.silnik);
 			return str >> *(s.bak);
 		}
-
-
 	}
 }
 void Samochod::jedz() {

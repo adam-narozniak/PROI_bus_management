@@ -6,7 +6,7 @@
 
 using namespace std;
 void Kierowca::wczytaj() {
-
+	cin >> *this;
 }
 
 void Kierowca::wyswietl() {
@@ -39,7 +39,6 @@ istream& operator>> (istream& str, Kierowca &k) {
 		str >> k.imie;
 		str >> k.nazwisko;
 		return str >> k.id;
-
 	}
 	else {
 		str.getline(tab, size);

@@ -188,7 +188,7 @@ void Autobus::przerejestruj(const string rej) {
 }
 
 
-Autobus::Autobus(string r, string m, double p, double mo, int t, double s, double po, int m1, int m2, int m3, Kierowca * k, Pasazerowie * pa) {// , int p1, int p2, int p3){
+Autobus::Autobus(string r, string m, double p, double mo, int t, double s, double po, int m1, int m2, int m3, Kierowca * k, Pasazerowie * pa) {
 	//konstruktor, gdzie silnik, bak oraz miejsca tworzone automotycznie, a bak i pasazerowie dynamicznie
 	nr_rej = r;
 	marka = m;
@@ -215,12 +215,10 @@ Autobus::~Autobus() {
 }
 
 Autobus::Autobus(const Autobus &autobus) {
-	//destruktor elementy dynamiczne specjalnie rozpatrzone
 	nr_rej = autobus.nr_rej;
 	marka = autobus.marka;
 	silnik = new Silnik(autobus.silnik->get_pojemnosc(), autobus.silnik->get_moc(), autobus.silnik->get_typ());
 	bak = new Bak(autobus.bak->get_stan(), autobus.bak->get_pojemnosc());
-	//kierowca = NULL;
 	if (autobus.kierowca == NULL) {
 		kierowca = NULL;
 	}
@@ -228,7 +226,6 @@ Autobus::Autobus(const Autobus &autobus) {
 		kierowca = new Kierowca(autobus.kierowca->get_imie(), autobus.kierowca->get_nazwisko(), autobus.kierowca->get_id());
 	}
 	miejsca = new Miejsca(autobus.miejsca->get_miejsca_normalne(), autobus.miejsca->get_miejsca_stojace(), autobus.miejsca->get_miejsca_rowery());
-	//pasazerowie = new Pasazerowie(autobus.pasazerowie->get_n_pasazerow(), autobus.pasazerowie->get_n_z_biletami(), autobus.pasazerowie->get_n_rowerow());
 	if (autobus.pasazerowie == NULL) {
 		pasazerowie = NULL;
 	}
@@ -240,12 +237,10 @@ Autobus::Autobus(const Autobus &autobus) {
 
 Kierowca * Autobus::stworz_kierowce(string im, string n, int i) {
 	Kierowca * k = new Kierowca(im, n, i);
-	//kierowca = k;
 	return k;
 }
 Pasazerowie * Autobus::stworz_pasazerow(int a, int b, int r) {
 	//funkcja do tworzenia pasazerow, ktora sprawdza jak miejsca na to pozwalaja
-
 	int dostepne_miejsca = this->miejsca->get_miejsca_normalne() + this->miejsca->get_miejsca_stojace();
 	bool pa = (a <= dostepne_miejsca);
 	int r_mozliwe = this->miejsca->get_miejsca_rowery();
@@ -268,7 +263,6 @@ Pasazerowie * Autobus::stworz_pasazerow(int a, int b, int r) {
 
 void Autobus::przypisz_kierowce(Kierowca *k) {
 	if (k != NULL && kierowca == NULL) {
-		//delete kierowca;
 		kierowca = k;
 		cout << "Kierowca poprawnie przypisany" << endl;
 		kierowca->wyswietl();
@@ -287,7 +281,6 @@ void Autobus::przypisz_pasazerow(Pasazerowie *p) {
 		return;
 	}
 	if (p != NULL && pasazerowie == NULL) {
-		//delete pasazerowie;
 		pasazerowie = p;
 		cout << "pasazerowie poprawnie przypisany" << endl;
 		pasazerowie->wyswietl();
@@ -375,7 +368,6 @@ void Autobus::tankuj(double ile) {
 		cout << "Takowanie tylko do wiekszego stanu niz obeczny" << endl;
 	}
 	bak->zmien_stan(ile);
-	//return *this;
 }
 
 //gety
@@ -423,9 +415,6 @@ bool Autobus::operator < (const Autobus &a) const {
 }
 
 Autobus & Autobus::operator !() {
-	/*Autobus * p = new Autobus(*this);
-	p->tankuj(this->bak->get_pojemnosc());
-	return *p;*/
 	this->tankuj(this->bak->get_pojemnosc());
 	return *this;
 
@@ -445,13 +434,11 @@ Autobus & Autobus::operator -() {
 	if (this->pasazerowie == NULL) {
 		cout << "Pasazerowie nie moga wyjsc z autobusu, poniewaz Pasazerowie nie zostali przypisani do autobusu" << endl;
 		return *this;
-
 	}
 	else {
 		this->edytuj_pasazerow(0, 0, 0);
 		return *this;
 	}
-
 }
 Autobus & Autobus::operator --() {
 	if (pasazerowie != NULL) {

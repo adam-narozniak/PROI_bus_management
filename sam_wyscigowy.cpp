@@ -23,11 +23,7 @@ void Sam_wyscigowy::odczytaj(string s) {
 	plik.close();
 }
 void Sam_wyscigowy::wyswietl() {
-	/*cout << "SAM_WYSCIGOWY" << endl;
-	this->Samochod::wyswietl();
-	cout << "Grupa krwii: " << gr_krwi << endl;
-	cout << "--------------------------------------------------" << endl;*/
-	cout << (*this);
+	cout << *this;
 }
 ostream& operator<<(ostream& str, const Sam_wyscigowy & w) {
 	if (&str == &std::cout) {
@@ -46,7 +42,14 @@ istream& operator>> (istream& str, Sam_wyscigowy &w) {
 	char tab[20];
 	int size = sizeof(tab) / sizeof(tab[0]);
 	if (&str == &std::cin) {
-		1;
+		cout << "Podaj nr rejestracyjny oraz marke" << endl;
+		cin.getline(tab, size);
+		w.nr_rej = tab;
+		str >> w.marka;
+		str >> *(w.silnik);
+		str >> *(w.bak);
+		cout << "Podaj grupe krwii" << endl;
+		return str >> w.gr_krwi;
 	}
 	else {
 		str.getline(tab, size);
@@ -59,7 +62,5 @@ istream& operator>> (istream& str, Sam_wyscigowy &w) {
 			str.getline(tab, size);
 			w.gr_krwi = tab;
 		}
-
-
 	}
 }

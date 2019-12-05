@@ -5,7 +5,7 @@
 
 using namespace std;
 void Pasazerowie::wczytaj() {
-
+	cin >> *this;
 }
 
 void Pasazerowie::wyswietl() {
@@ -18,7 +18,6 @@ void Pasazerowie::wyswietl() {
 ostream& operator<<(ostream& str, const Pasazerowie& p) {
 	if (&p == NULL) {
 		return str << "NULL" << endl;
-
 }
 	if (&str == &std::cout) {
 		str << "Pasazerowie: " << p.n_pasazerow << endl;
@@ -40,7 +39,6 @@ istream& operator>> (istream& str, Pasazerowie &p) {
 		str >> p.n_pasazerow;
 		str >> p.n_z_biletami;
 		return str >> p.n_rowerow;
-
 	}
 	else {
 		str.getline(tab, size);
@@ -65,7 +63,6 @@ Pasazerowie::Pasazerowie(int n, int b, int r) {
 	else {
 		n_z_biletami = b;
 	}
-	
 	n_rowerow= r;
 }
 void Pasazerowie::edytuj(int n, int b, int r) {
