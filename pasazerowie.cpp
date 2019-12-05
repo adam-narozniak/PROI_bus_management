@@ -5,10 +5,7 @@
 
 using namespace std;
 void Pasazerowie::wczytaj() {
-	cout << "Podaj liczbe pasazerow, pasazerow z biletami oraz liczbe rowerow" << endl;
-	cin >> n_pasazerow;
-	cin >> n_z_biletami;
-	cin >> n_rowerow;
+
 }
 
 void Pasazerowie::wyswietl() {
@@ -39,10 +36,16 @@ istream& operator>> (istream& str, Pasazerowie &p) {
 	char tab[20];
 	int size = sizeof(tab) / sizeof(tab[0]);
 	if (&str == &std::cin) {
+		cout << "Podaj liczbe pasazerow, pasazerow z biletami oraz liczbe rowerow" << endl;
+		str >> p.n_pasazerow;
+		str >> p.n_z_biletami;
+		return str >> p.n_rowerow;
+
 	}
 	else {
 		str.getline(tab, size);
 		if (!strcmp(tab, "NULL")) {
+			p.~Pasazerowie();
 			return str;
 		}
 		p.n_pasazerow= stoi(tab);

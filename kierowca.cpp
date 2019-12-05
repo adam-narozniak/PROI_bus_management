@@ -6,10 +6,7 @@
 
 using namespace std;
 void Kierowca::wczytaj() {
-	cout << "Podaj imie, nazwisko oraz id kierowcy" << endl;
-	cin >> imie;
-	cin >> nazwisko;
-	cin >> id;
+
 }
 
 void Kierowca::wyswietl() {
@@ -38,10 +35,16 @@ istream& operator>> (istream& str, Kierowca &k) {
 	char tab[20];
 	int size = sizeof(tab) / sizeof(tab[0]);
 	if (&str == &std::cin) {
+		cout << "Podaj imie, nazwisko oraz id kierowcy" << endl;
+		str >> k.imie;
+		str >> k.nazwisko;
+		return str >> k.id;
+
 	}
 	else {
 		str.getline(tab, size);
 		if (!strcmp(tab, "NULL")) {
+			k.~Kierowca();
 			return str;
 		}
 		k.imie = tab;

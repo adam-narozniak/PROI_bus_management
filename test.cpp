@@ -1,15 +1,128 @@
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include "autobus.h"
-#include "kierowca.h"
-#include "bak.h"
-#include "silnik.h"
-#include "miejsca.h"
-#include "pasazerowie.h"
 #include "test.h"
-#include "test.h"
-#include <stdlib.h>
+void menu() {
+	int a;
+	do {
+		cout << "Wcisnij:" << endl << "1 aby stworzyc obiekt klasy autobus" << endl << "2 aby stworzyc obiekt klasy samochod" << endl
+			<< "3 aby stworzyc obiekt klasy Sam_wyscigowy" << endl;
+		cin >> a;
+		if (a == 1) {
+			Autobus aut;
+			menu_autobus(aut);
+		}
+		else if (a == 2) {
+			Samochod s;
+			menu_samochod(s);
+		}
+		else if (a == 3) {
+			Sam_wyscigowy w;
+			menu_sam_wys(w);
+		}
+		else {
+			break;
+		}
+
+	} while (1);
+}
+void menu_autobus(Autobus &aut) {
+	int a;
+	string s;
+	do {
+		cout << "Wcisnij:" << endl << "1 aby odczytac z pliku" << endl << "2 aby zapisac do pliku" << endl
+			<< "3 aby jechac" << endl << "4 aby tankowac" << endl;
+		cin >> a;
+		if (a == 1) {
+			cout << "Podaj nazwe pliku: " << endl;
+			cin >> s;
+			aut.odczytaj(s);
+		}
+		else if (a == 2) {
+			cout << "Podaj nazwe pliku: " << endl;
+			cin >> s;
+			aut.zapisz(s);
+		}
+		else if (a == 3) {
+			aut.jedz();
+			cout << aut;
+
+		}
+		else if (a==4) {
+			cout << "Ile chcesz zatankowac?" << endl;
+			cin >> s;
+			aut.tankuj(stod(s));
+		}
+		else {
+			break;
+		}
+
+	} while (1);
+}
+void menu_samochod(Samochod &sam) {
+	int a;
+	string s;
+	do {
+		cout << "Wcisnij:" << endl << "1 aby odczytac z pliku" << endl << "2 aby zapisac do pliku" << endl
+			<< "3 aby jechac" << endl << "4 aby tankowac" << endl;
+		cin >> a;
+		if (a == 1) {
+			cout << "Podaj nazwe pliku: " << endl;
+			cin >> s;
+			sam.odczytaj(s);
+		}
+		else if (a == 2) {
+			cout << "Podaj nazwe pliku: " << endl;
+			cin >> s;
+			sam.zapisz(s);
+		}
+		else if (a == 3) {
+			sam.jedz();
+			cout << s;
+
+		}
+		else if (a == 4) {
+			cout << "Ile chcesz zatankowac?" << endl;
+			cin >> s;
+			sam.tankuj(stod(s));
+		}
+		else {
+			break;
+		}
+
+	} while (1);
+}
+void menu_sam_wys(Sam_wyscigowy &w) {
+	int a;
+	string s;
+	do {
+		cout << "Wcisnij:" << endl << "1 aby odczytac z pliku" << endl << "2 aby zapisac do pliku" << endl
+			<< "3 aby jechac" << endl << "4 aby tankowac" << endl;
+		cin >> a;
+		if (a == 1) {
+			cout << "Podaj nazwe pliku: " << endl;
+			cin >> s;
+			w.odczytaj(s);
+		}
+		else if (a == 2) {
+			cout << "Podaj nazwe pliku: " << endl;
+			cin >> s;
+			w.zapisz(s);
+		}
+		else if (a == 3) {
+			w.jedz();
+			cout << w;
+
+		}
+		else if (a == 4) {
+			cout << "Ile chcesz zatankowac?" << endl;
+			cin >> s;
+			w.tankuj(stod(s));
+		}
+		else {
+			break;
+		}
+
+	} while (1);
+}
+
 void test() {
 	char stop;
 	cout << "Funkcja testujaca" << endl;
@@ -158,6 +271,19 @@ void test_operatorow() {
 	test_dodawania_rowerow();
 	test_przesiadki();
 	test_wysiadki();
+}
 
-
+void tablica_pojazd() {
+	Pojazd * p[3];
+	Autobus a1;
+	a1.dodaj_kierowce("Janek", "Nowak", 12345);
+	a1.zapisz();
+	p[0] = &a1;
+	Samochod s1("WWK 2343", "Porshe", 1.2, 130, 1, 34, 60);
+	s1.zapisz();
+	p[1] = &s1;
+	Sam_wyscigowy w1("WK 00123", "Audi", 1.23, 130, 1, 20, 34);
+	w1.zapisz();
+	p[2] = &w1;
+	
 }

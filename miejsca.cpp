@@ -5,10 +5,7 @@
 
 using namespace std;
 void Miejsca::wczytaj() {
-	cout << "Podaj liczbe miejsc normalnych, miejsca_niepelnosprawni, miejsca_stoj¹ce" << endl;
-	cin >> this->miejsca_normalne;
-	cin >> this->miejsca_stojace;
-	cin >> this->miejsca_rowery;
+	
 }
 
 void Miejsca::wyswietl() {
@@ -37,7 +34,10 @@ istream& operator>> (istream& str, Miejsca &m) {
 	char tab[20];
 	int size = sizeof(tab) / sizeof(tab[0]);
 	if (&str == &std::cin) {
-		m.wczytaj();
+		cout << "Podaj liczbe miejsc normalnych, miejsca_niepelnosprawni, miejsca_stojace" << endl;
+		str >> m.miejsca_normalne;
+		str >> m.miejsca_stojace;
+		return str >> m.miejsca_rowery;
 	}
 	else {
 		str.getline(tab, size);

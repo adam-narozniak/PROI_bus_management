@@ -63,6 +63,10 @@ istream& operator>> (istream& str, Silnik &s) {
 	char tab[20];
 	int size = sizeof(tab) / sizeof(tab[0]);
 	if (&str == &std::cin) {
+		cout << "Podaj pojemnosc, moc, typ (1 - diesel, 2 - benzyna, 3 - inny)" << endl;
+		str >> s.pojemnosc;
+		str >> s.moc;
+		return str >> s.typ;
 	}
 	else {
 		str.getline(tab, size);

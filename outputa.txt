@@ -1,17 +1,17 @@
 AUTOBUS
-WWA 9324
-Mercedes
-2.34
-100
+BRAK
+BMW
+2.2
+190
 1
-34
-80
-Jack
-Sparrow
-23
-34
-80
-6
+40
+60
+Janek
+Nowak
+12345
+40
+90
+5
 NULL
 
 

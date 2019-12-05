@@ -86,3 +86,14 @@ void Samochod::jedz() {
 		bak->zmien_stan(bak->get_stan() - delta);
 	}
 }
+
+void Samochod::przerejestruj(const string rej) {
+	this->nr_rej = rej;
+}
+
+void Samochod::tankuj(double ile) {
+	if (ile < bak->get_stan()) {
+		cout << "Takowanie tylko do wiekszego stanu niz obeczny" << endl;
+	}
+	bak->zmien_stan(ile);
+}

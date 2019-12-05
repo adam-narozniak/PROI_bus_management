@@ -16,9 +16,11 @@ protected:
 public:
 	Samochod(string = "BRAK", string = "Audi", double = 1.6, double = 120, int = 1, double = 40, double = 60);
 	void wyswietl();
+	void przerejestruj(string = "WK 7654");
 	friend ostream& operator<<(ostream&, const Samochod &);
 	friend istream& operator>>(istream&, Samochod &);
 	void jedz();
+	void tankuj(double = 60.0);
 	void zapisz(string ="outputs.txt");
 	void odczytaj(string = "outputs.txt");
 };

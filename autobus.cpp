@@ -7,9 +7,8 @@
 using namespace std;
 
 void Autobus::wczytaj() {
-	cout << "Podaj nr rejestracyjny oraz marke" << endl;
-	cin >> nr_rej;
-	cin >> marka;
+
+
 }
 
 void Autobus::wyswietl() {
@@ -104,7 +103,21 @@ istream& operator>> (istream& str, Autobus &a) {
 	char tab[20];
 	int size = sizeof(tab) / sizeof(tab[0]);
 	if (&str == &std::cin) {
-		1;
+		cout << "Podaj nr rejestracyjny oraz marke" << endl;
+		cin.getline(tab, size);
+		a.nr_rej = tab;
+		str >> a.marka;
+		str >> *(a.silnik);
+		str >> *(a.bak);
+		if (a.kierowca == NULL) {
+			a.dodaj_kierowce();
+		}
+		str >> *(a.kierowca);
+		str >> *(a.miejsca);
+		if (a.pasazerowie == NULL) {
+			a.dodaj_pasazerow();
+		}
+		str >> *(a.pasazerowie);
 	}
 	else {
 		str.getline(tab, size);
@@ -119,18 +132,16 @@ istream& operator>> (istream& str, Autobus &a) {
 			a.marka = tab;
 			str >> *(a.silnik);
 			str >> *(a.bak);
-			/*if (a.kierowca == NULL) {
+			if (a.kierowca == NULL) {
 				a.dodaj_kierowce();
-			}*/
+			}
 			str >> *(a.kierowca);
 			str >> *(a.miejsca);
-			/*if (a.pasazerowie == NULL) {
+			if (a.pasazerowie == NULL) {
 				a.dodaj_pasazerow();
-			}*/
+			}
 			return str >> *(a.pasazerowie);
 		}
-
-
 	}
 }
 void Autobus::zapisz(string s) {

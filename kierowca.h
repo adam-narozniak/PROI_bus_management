@@ -7,7 +7,7 @@ class Kierowca {
 	string nazwisko;
 	int id;
 public:
-	Kierowca(string = "brak", string = "brak", int = -1);
+	Kierowca(string = "Jan", string = "Nowak", int = 1);
 	~Kierowca();
 	Kierowca(Kierowca &);
 	void wczytaj();

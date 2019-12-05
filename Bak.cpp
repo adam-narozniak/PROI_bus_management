@@ -6,9 +6,7 @@
 
 using namespace std;
 void Bak::wczytaj() {
-	cout << "Podaj pojemnosc oraz poziom zatankowania baku" << endl;
-	cin >> pojemnosc;
-	cin >> stan;
+	
 }
 
 void Bak::wyswietl() {
@@ -62,6 +60,9 @@ istream& operator>> (istream& str, Bak &b ){
 	char tab[20];
 	int size = sizeof(tab) / sizeof(tab[0]);
 	if (&str == &std::cin) {
+		cout << "Podaj pojemnosc oraz poziom zatankowania baku" << endl;
+		str >> b.pojemnosc;
+		return str >> b.stan;
 	}
 	else {
 		str.getline(tab, size);
