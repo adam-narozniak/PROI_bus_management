@@ -15,6 +15,7 @@ protected:
 	Bak *bak;
 public:
 	Samochod(string = "BRAK", string = "Audi", double = 1.6, double = 120, int = 1, double = 40, double = 60);
+	virtual ~Samochod();
 	void wyswietl();
 	void przerejestruj(string = "WK 7654");
 	friend ostream& operator<<(ostream&, const Samochod &);

@@ -8,6 +8,7 @@ using namespace std;
 Sam_wyscigowy::Sam_wyscigowy(string r, string m, double p, double mo, int t, double s, double po, string g) :
 	Samochod(r, m, p, mo, t, s, po), gr_krwi(g)
 {}
+
 void Sam_wyscigowy::zapisz(string s) {
 	ofstream plik(s);
 	plik << *this << endl;
@@ -63,4 +64,7 @@ istream& operator>> (istream& str, Sam_wyscigowy &w) {
 			w.gr_krwi = tab;
 		}
 	}
+}
+Sam_wyscigowy::~Sam_wyscigowy() {
+	cout << "Destruktor SAM_WYSCIGOWY wlaczony" << endl;
 }

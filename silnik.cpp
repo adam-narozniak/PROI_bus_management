@@ -36,7 +36,6 @@ Silnik::Silnik(double p, double m, int t) {
 
 Silnik::~Silnik() {
 	cout << "Destruktor Silnik wlaczony" << endl;
-
 }
 
 double Silnik::get_pojemnosc() {

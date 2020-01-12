@@ -7,8 +7,7 @@
 using namespace std;
 
 void Autobus::wczytaj() {
-
-
+	cin >> *this;
 }
 
 void Autobus::wyswietl() {
@@ -197,7 +196,6 @@ Autobus::Autobus(string r, string m, double p, double mo, int t, double s, doubl
 	kierowca = k;
 	miejsca = new Miejsca(m1, m2, m3);
 	pasazerowie = pa;
-
 }
 
 Autobus::~Autobus() {

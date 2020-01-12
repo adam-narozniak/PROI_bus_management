@@ -277,13 +277,16 @@ void tablica_pojazd() {
 	Pojazd * p[3];
 	Autobus a1;
 	a1.dodaj_kierowce("Janek", "Nowak", 12345);
-	a1.zapisz();
+	//a1.zapisz();
 	p[0] = &a1;
 	Samochod s1("WWK 2343", "Porshe", 1.2, 130, 1, 34, 60);
-	s1.zapisz();
+	//s1.zapisz();
 	p[1] = &s1;
 	Sam_wyscigowy w1("WK 00123", "Audi", 1.23, 130, 1, 20, 34);
-	w1.zapisz();
+	//w1.zapisz();
 	p[2] = &w1;
+	for (int i = 0; i < 3; i++) {
+		1;
+	}
 	
 }

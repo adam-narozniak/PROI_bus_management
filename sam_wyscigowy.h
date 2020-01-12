@@ -10,6 +10,7 @@ private:
 	string gr_krwi;
 public:
 	Sam_wyscigowy(string = "BRAK", string = "Mustang", double = 2.5, double = 321, int = 2, double = 57, double = 60, string = "0 Rh-");
+	~Sam_wyscigowy();
 	void wyswietl();
 	void zapisz(string = "outputw.txt");
 	void odczytaj(string = "outputw.txt");

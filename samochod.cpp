@@ -90,3 +90,6 @@ void Samochod::tankuj(double ile) {
 	}
 	bak->zmien_stan(ile);
 }
+Samochod::~Samochod() {
+	cout << "Destruktor SAMOCHOD wlaczony" << endl;
+}
