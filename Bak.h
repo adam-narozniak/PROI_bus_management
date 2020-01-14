@@ -9,6 +9,7 @@ private:
 public:
 	Bak(double = 40, double = 60);
 	~Bak();
+	Bak(const Bak &);
 	void wczytaj();
 	void wyswietl();
 	void zmien_stan(double = 40);

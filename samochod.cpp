@@ -8,6 +8,22 @@ using namespace std;
 Samochod::Samochod(string r, string m, double p, double mo, int t, double s, double po) :
 	nr_rej(r), marka(m), silnik(new Silnik(p, mo, t)), bak(new Bak(s, po)) {
 }
+Samochod::Samochod(const Samochod& s) {
+	nr_rej = s.nr_rej;
+	marka = s.marka;
+	silnik = new Silnik(*(s.silnik));
+	bak = new Bak(*(s.bak));
+}
+Samochod & Samochod::operator=(const Samochod &s) {
+	if (this == &s) return *this;
+	nr_rej = s.nr_rej;
+	marka = s.marka;
+	delete silnik;
+	silnik = new Silnik(*(s.silnik));
+	delete bak;
+	bak = new Bak(*(s.bak));
+	return *this;
+}
 void Samochod::wyswietl() {
 	cout << *this;
 }
@@ -91,5 +107,15 @@ void Samochod::tankuj(double ile) {
 	bak->zmien_stan(ile);
 }
 Samochod::~Samochod() {
+	delete silnik;
+	delete bak;
 	cout << "Destruktor SAMOCHOD wlaczony" << endl;
+}
+
+string Samochod::get_nr_rej() {
+	return nr_rej;
+}
+
+Silnik * Samochod::get_silnik() {
+	return silnik;
 }

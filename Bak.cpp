@@ -24,18 +24,37 @@ Bak::Bak(double stn, double poj) {
 	}
 	pojemnosc = poj;
 }
+Bak::Bak(const Bak &bak) {
+	stan = bak.stan;
+	pojemnosc = bak.pojemnosc;
+}
 
 Bak::~Bak() {
 	cout << "Destruktor Bak wlaczony" << endl;
 }
 
 void Bak::zmien_stan(double stn) {
-	if (stn <= pojemnosc) {
-		stan = stn;
+	try {
+		if (stn < 0) throw "ujemne tankowanie";
 	}
-	else {
+	catch(const char *){
+		cout << "Tankujesz ujemnie, poziom paliwa zostanie niezmieniony" ;
+		return;
+	}
+	try {
+		if (stn < stan) throw "Tankowanie do stanu mniejszego niz obecy jest niemozliwe";
+	}
+	catch (const char*) {
+		return;
+	}
+	try {
+		if (stn > pojemnosc) throw "tankowanie poza dozowlony poziom";
+	}
+	catch(const char*){
 		stan = pojemnosc;
+		return;
 	}
+	stan = stn;
 }
 
 double Bak::get_pojemnosc() {
@@ -62,7 +81,17 @@ istream& operator>> (istream& str, Bak &b ){
 	if (&str == &std::cin) {
 		cout << "Podaj pojemnosc oraz poziom zatankowania baku" << endl;
 		str >> b.pojemnosc;
-		return str >> b.stan;
+		double temp;
+		str >> temp;
+		
+		if (temp <= b.pojemnosc) {//zabezpieczenie przed podaniem stanu wiekszego od pojemnosi - nastepuje tankowanie do pelna
+			temp;
+		}
+		else {
+			temp = b.pojemnosc;
+		}
+		b.stan = temp;
+		return str;
 	}
 	else {
 		str.getline(tab, size);

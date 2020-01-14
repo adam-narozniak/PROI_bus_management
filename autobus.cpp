@@ -262,7 +262,7 @@ Pasazerowie * Autobus::stworz_pasazerow(int a, int b, int r) {
 void Autobus::przypisz_kierowce(Kierowca *k) {
 	if (k != NULL && kierowca == NULL) {
 		kierowca = k;
-		cout << "Kierowca poprawnie przypisany" << endl;
+		//cout << "Kierowca poprawnie przypisany" << endl;
 		kierowca->wyswietl();
 	}
 	else if (kierowca != NULL) {
@@ -280,7 +280,7 @@ void Autobus::przypisz_pasazerow(Pasazerowie *p) {
 	}
 	if (p != NULL && pasazerowie == NULL) {
 		pasazerowie = p;
-		cout << "pasazerowie poprawnie przypisany" << endl;
+		//cout << "pasazerowie poprawnie przypisany" << endl;
 		pasazerowie->wyswietl();
 	}
 	else if (pasazerowie != NULL) {
@@ -300,7 +300,7 @@ void Autobus::dodaj_pasazerow(int a, int b, int r) {
 	Pasazerowie * p = stworz_pasazerow(a, b, r);
 	if (p != NULL && pasazerowie == NULL) {
 		pasazerowie = p;
-		cout << "Pasazerowie poprawnie przypisany" << endl;
+		//cout << "Pasazerowie poprawnie przypisany" << endl;
 		pasazerowie->wyswietl();
 	}
 	else if (p != NULL && pasazerowie != NULL) {
@@ -341,7 +341,7 @@ void Autobus::dodaj_kierowce(string i, string n, int i_) {
 	Kierowca * k = stworz_kierowce(i, n, i_);
 	if (this->kierowca == NULL) {
 		kierowca = k;
-		cout << "Kierowca poprawnie przypisany" << endl;
+		//cout << "Kierowca poprawnie przypisany" << endl;
 		kierowca->wyswietl();
 	}
 	else if (this->kierowca != NULL) {
@@ -418,14 +418,35 @@ Autobus & Autobus::operator !() {
 
 }
 Autobus & Autobus::operator =(const Autobus &p) {
+	if (this == &p) return *this;
 	nr_rej = p.nr_rej;
 	marka = p.marka;
-	silnik = p.silnik;
-	bak = p.bak;
-	kierowca = p.kierowca;
-	miejsca = p.miejsca;
-	pasazerowie = p.pasazerowie;
+	delete silnik;
+	silnik = new Silnik(p.silnik->get_pojemnosc(), p.silnik->get_moc(), p.silnik->get_typ());
+	bak = new Bak(p.bak->get_stan(), p.bak->get_pojemnosc());
+	if (p.kierowca == NULL) {
+		kierowca = NULL;
+	}
+	else {
+		delete kierowca;
+		kierowca = new Kierowca(p.kierowca->get_imie(), p.kierowca->get_nazwisko(), p.kierowca->get_id());
+	}
+	delete miejsca;
+	miejsca = new Miejsca(p.miejsca->get_miejsca_normalne(), p.miejsca->get_miejsca_stojace(), p.miejsca->get_miejsca_rowery());
+	if (p.pasazerowie == NULL) {
+		pasazerowie = NULL;
+	}
+	else {
+		delete pasazerowie;
+		pasazerowie = new Pasazerowie(p.pasazerowie->get_n_pasazerow(), p.pasazerowie->get_n_z_biletami(), p.pasazerowie->get_n_rowerow());
+	}
 	return *this;
+}
+bool Autobus::operator ==(const Autobus &p) const {
+	return (this->nr_rej.compare(p.nr_rej) == 0);
+}
+bool Autobus::operator ==(const char* p)const {
+	return (this->nr_rej.compare(p) == 0);
 }
 
 Autobus & Autobus::operator -() {

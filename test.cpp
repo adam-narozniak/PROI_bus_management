@@ -3,7 +3,7 @@ void menu() {
 	int a;
 	do {
 		cout << "Wcisnij:" << endl << "1 aby stworzyc obiekt klasy autobus" << endl << "2 aby stworzyc obiekt klasy samochod" << endl
-			<< "3 aby stworzyc obiekt klasy Sam_wyscigowy" << endl;
+			<< "3 aby stworzyc obiekt klasy Sam_wyscigowy" << endl << "4 aby wyjsc" << endl;
 		cin >> a;
 		if (a == 1) {
 			Autobus aut;
@@ -27,10 +27,16 @@ void menu_autobus(Autobus &aut) {
 	int a;
 	string s;
 	do {
-		cout << "Wcisnij:" << endl << "1 aby odczytac z pliku" << endl << "2 aby zapisac do pliku" << endl
-			<< "3 aby jechac" << endl << "4 aby tankowac" << endl;
+		cout << "Wcisnij:" << endl << "0 aby utworzyc Autobus" << endl << "1 aby odczytac z pliku" << endl << "2 aby zapisac do pliku" << endl
+			<< "3 aby jechac" << endl << "4 aby tankowac" << endl << "5 aby wyswietlic" << endl;
 		cin >> a;
-		if (a == 1) {
+		if (a == 0) {
+			getchar();
+			cin >> aut;
+			cout << aut;
+			getchar();
+		}
+		else if (a == 1) {
 			cout << "Podaj nazwe pliku: " << endl;
 			cin >> s;
 			aut.odczytaj(s);
@@ -45,10 +51,14 @@ void menu_autobus(Autobus &aut) {
 			cout << aut;
 
 		}
-		else if (a==4) {
+		else if (a == 4) {
 			cout << "Ile chcesz zatankowac?" << endl;
 			cin >> s;
 			aut.tankuj(stod(s));
+		}
+		else if (a == 5) {
+			cout << aut;
+			getchar();
 		}
 		else {
 			break;
@@ -60,10 +70,16 @@ void menu_samochod(Samochod &sam) {
 	int a;
 	string s;
 	do {
-		cout << "Wcisnij:" << endl << "1 aby odczytac z pliku" << endl << "2 aby zapisac do pliku" << endl
+		cout << "Wcisnij:" << endl << "0 aby utworzyc samochod" << endl << "1 aby odczytac z pliku" << endl << "2 aby zapisac do pliku" << endl
 			<< "3 aby jechac" << endl << "4 aby tankowac" << endl;
 		cin >> a;
-		if (a == 1) {
+		if (a == 0) {
+			getchar();
+			cin >> sam;
+			cout << sam;
+			getchar();
+		}
+		else if (a == 1) {
 			cout << "Podaj nazwe pliku: " << endl;
 			cin >> s;
 			sam.odczytaj(s);
@@ -96,7 +112,14 @@ void menu_sam_wys(Sam_wyscigowy &w) {
 		cout << "Wcisnij:" << endl << "1 aby odczytac z pliku" << endl << "2 aby zapisac do pliku" << endl
 			<< "3 aby jechac" << endl << "4 aby tankowac" << endl;
 		cin >> a;
-		if (a == 1) {
+		if (a == 0) {
+			getchar();
+			cin >> w;
+			cout << w;
+			getchar();
+
+		}
+		else if (a == 1) {
 			cout << "Podaj nazwe pliku: " << endl;
 			cin >> s;
 			w.odczytaj(s);
@@ -265,7 +288,7 @@ void test_wysiadki() {
 	a2.wyswietl();
 }
 void test_operatorow() {
-	
+
 	test_porownania_mocy();
 	test_tankowania_do_pelna();
 	test_dodawania_rowerow();
@@ -288,5 +311,79 @@ void tablica_pojazd() {
 	for (int i = 0; i < 3; i++) {
 		1;
 	}
-	
+
+}
+void vector_iterator_sort() {
+	Autobus a1("aWW0001", "Mercedes", 2.4, 180, 1, 80, 100, 30, 50, 3);
+	Autobus a2("bwk3465", "bmw", 2.2, 200, 2);
+	Autobus a3("cwk3465", "bmw", 2.72, 287, 2);
+	vector<Autobus> aut;
+	aut.push_back(a3);
+	aut.push_back(a1);
+	aut.push_back(a2);
+	typedef vector<Autobus>::iterator IT;
+	IT begin = aut.begin();
+	sort(aut.begin(), aut.end(), Komp<Autobus>(Komp<Autobus>::wg_rejestracji));
+	copy(aut.begin(), aut.end(), ostream_iterator<Autobus>(cout, " "));
+
+}
+void iterator() {
+	Autobus a1("aWW0001", "Mercedes", 2.4, 180, 1, 80, 100, 30, 50, 3);
+	Autobus a2("bwk3465", "bmw", 2.2, 200, 2);
+	Autobus a3("cwk3465", "bmw", 2.72, 287, 2);
+	vector<Autobus> aut;
+	aut.push_back(a3);
+	aut.push_back(a1);
+	aut.push_back(a2);
+	typedef vector<Autobus>::iterator IT;
+	IT begin = aut.begin();
+	sort(aut.begin(), aut.end(), Komp<Autobus>(Komp<Autobus>::wg_rejestracji));
+	cout << *begin << endl;
+	begin++;
+	cout << *begin << endl;
+}
+void wyjatki() {
+	Autobus a1("aWW0001", "Mercedes", 2.4, 180, 1, 80, 100, 30, 50, 3);
+	a1.tankuj(-2);
+}
+void vector_find() {
+	Autobus a1("aWW0001", "Mercedes", 2.4, 180, 1, 80, 100, 30, 50, 3);
+	Autobus a2("bwk3465", "bmw", 2.2, 200, 2);
+	Autobus a3("cwk3465", "bmw", 2.72, 287, 2);
+	vector<Autobus> aut;
+	aut.push_back(a3);
+	aut.push_back(a1);
+	aut.push_back(a2);
+	typedef vector<Autobus>::iterator IT;
+	IT it;
+	it = find(aut.begin(), aut.end(), "aWW0001");
+	if (it == aut.end()) {
+		cout << "Nie znaleziono autobusu o tym numerze rejestracyjnym" << endl;
+	}
+	else {
+		cout <<"Twoj obiekt to "<<*it << endl;
+	}
+
+}
+/*void vector_find_if() {
+	Autobus a1("aWW0001", "Mercedes", 2.4, 180, 1, 80, 100, 30, 50, 3);
+	Autobus a2("bwk3465", "bmw", 2.2, 200, 2);
+	Autobus a3("cwk3465", "bmw", 2.72, 287, 2);
+	vector<Autobus> aut;
+	aut.push_back(a3);
+	aut.push_back(a1);
+	aut.push_back(a2);
+	typedef vector<Autobus>::iterator IT;
+	IT it;
+	it = find_if(aut.begin(), aut.end(), Komp<Autobus>(Komp<Autobus>::find_wg_marki));
+	if (it == aut.end()) {
+		cout << "Nie znaleziono autobusu o tym numerze rejestracyjnym" << endl;
+	}
+	else {
+		cout << "Twoj obiekt to " << *it << endl;
+	}
+
+}*/
+void czy_jest_rej() {
+	1;
 }

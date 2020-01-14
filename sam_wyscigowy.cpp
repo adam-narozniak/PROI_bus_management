@@ -8,6 +8,12 @@ using namespace std;
 Sam_wyscigowy::Sam_wyscigowy(string r, string m, double p, double mo, int t, double s, double po, string g) :
 	Samochod(r, m, p, mo, t, s, po), gr_krwi(g)
 {}
+Sam_wyscigowy & Sam_wyscigowy::operator=(const Sam_wyscigowy &s) {
+	if (this == &s) return *this;
+	*this = s;
+	gr_krwi = s.gr_krwi;
+	return *this;
+}
 
 void Sam_wyscigowy::zapisz(string s) {
 	ofstream plik(s);

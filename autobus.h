@@ -14,7 +14,7 @@ class Autobus: public Pojazd {
 protected:
 	string nr_rej;
 	string marka;
-	Silnik * silnik;
+	Silnik *silnik;
 	Bak *bak;
 private:
 	Kierowca *kierowca;
@@ -38,6 +38,8 @@ public:
 	void wczytaj();
 	void wyswietl();
 	Autobus & operator =(const Autobus &);
+	bool operator ==(const Autobus &) const ;
+	bool operator ==(const char*) const;
 	void jedz();
 	void kanar();
 	void przerejestruj(const string ="");
