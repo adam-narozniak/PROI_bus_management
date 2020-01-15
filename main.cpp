@@ -26,8 +26,10 @@ int main(void) {
 	//test();
 #endif
 	set_terminate(&termin);
-	//menu();
-	vector_find();
+	//tekst_menu();
+	menu();
+	//vector_iterator_sort();
+	//find_max_elem();
 	//aut.push_back(a3);
 	//cout<< aut[0] << endl;
 	//cout << a1.get_nr_rej() << endl << a2.get_nr_rej() << endl;

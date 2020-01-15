@@ -443,10 +443,10 @@ Autobus & Autobus::operator =(const Autobus &p) {
 	return *this;
 }
 bool Autobus::operator ==(const Autobus &p) const {
-	return (this->nr_rej.compare(p.nr_rej) == 0);
+	return (this->marka.compare(p.marka) == 0);
 }
 bool Autobus::operator ==(const char* p)const {
-	return (this->nr_rej.compare(p) == 0);
+	return (this->marka.compare(p) == 0);
 }
 
 Autobus & Autobus::operator -() {

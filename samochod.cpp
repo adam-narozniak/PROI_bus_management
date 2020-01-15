@@ -119,3 +119,9 @@ string Samochod::get_nr_rej() {
 Silnik * Samochod::get_silnik() {
 	return silnik;
 }
+Bak * Samochod::get_bak() {
+	return bak;
+}
+string  Samochod::get_marka() {
+	return marka;
+}

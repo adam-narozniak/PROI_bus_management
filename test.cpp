@@ -3,7 +3,7 @@ void menu() {
 	int a;
 	do {
 		cout << "Wcisnij:" << endl << "1 aby stworzyc obiekt klasy autobus" << endl << "2 aby stworzyc obiekt klasy samochod" << endl
-			<< "3 aby stworzyc obiekt klasy Sam_wyscigowy" << endl << "4 aby wyjsc" << endl;
+			<< "3 aby stworzyc obiekt klasy Sam_wyscigowy" << endl << "4 aby uzywac vektorow" << endl << "5 aby wyjsc" << endl;
 		cin >> a;
 		if (a == 1) {
 			Autobus aut;
@@ -17,11 +17,93 @@ void menu() {
 			Sam_wyscigowy w;
 			menu_sam_wys(w);
 		}
+		else if (a == 4) {
+			do {
+				cout << "1 - autobusow" << endl << "2- samochodow" << endl << "3 - samochodow wyscigowych" << endl << "4 - wyjscie" << endl;
+				cin >> a;
+				if (a == 1) {
+					baza_autobus();
+				}
+				else if (a == 2) {
+					baza_samochod();
+				}
+				else if (a == 3) {
+					baza_sam_wyscigowy();
+				}
+				else {
+					break;
+				}
+			} while (1);
+		}
 		else {
 			break;
 		}
 
 	} while (1);
+}
+void baza_autobus() {
+	Autobus a1("aWW0001", "Mercedes", 2.4, 180, 1, 80, 100, 30, 50, 3);
+	Autobus a2("bwk3465", "bmw", 2.2, 200, 2);
+	Autobus a3("cwk3465", "bmw", 2.72, 287, 2);
+	vector<Autobus> aut;
+	aut.push_back(a3);
+	aut.push_back(a1);
+	aut.push_back(a2);
+	tekst_menu(aut);
+}
+void baza_samochod() {
+	1;
+}
+void baza_sam_wyscigowy() {
+	1;
+}
+template <class T>
+void tekst_menu(vector<T> &v) {
+	do {
+		cout << "1-dodaj" << endl << "2-sortuj" << endl << "3-znajdz" << endl << "4-max" << endl << "5-min" << endl << "6 wyswietl" << endl;
+		int a;
+		cin >> a;
+		if (a == 1) {
+			T t1;
+			cin>> t1;
+		}
+		else if (a == 2) {
+			cout << "Podaj tryb sortowania" << endl<<"1-wg_rejestracji, 2-wg_pojemnosci, 3-wg_mocy, 4-wg_paliwa" << endl;
+			cin >> a;
+			switch(a){
+			case 1:
+				sort(v.begin(), v.end(), Komp<T>(Komp<Autobus>::wg_rejestracji));
+				break;
+			case 2:
+				sort(v.begin(), v.end(), Komp<T>(Komp<Autobus>::wg_pojemnosci));
+				break;
+			case 3:
+				sort(v.begin(), v.end(), Komp<T>(Komp<Autobus>::wg_mocy));
+				break;
+			case 4:
+				sort(v.begin(), v.end(), Komp<T>(Komp<Autobus>::wg_paliwa));
+				break;
+			default:
+				break;
+			}
+		}
+		else if (a == 3) {
+
+		}
+		else if (a == 4) {
+
+		}
+		else if (a == 5) {
+
+		}
+		else if (a == 6) {
+
+		}
+		else {
+			break;
+		}
+	} while (1);
+
 }
 void menu_autobus(Autobus &aut) {
 	int a;
@@ -361,11 +443,11 @@ void vector_find() {
 		cout << "Nie znaleziono autobusu o tym numerze rejestracyjnym" << endl;
 	}
 	else {
-		cout <<"Twoj obiekt to "<<*it << endl;
+		cout << "Twoj obiekt to " << endl << *it << endl;
 	}
 
 }
-/*void vector_find_if() {
+void vector_find_if() {
 	Autobus a1("aWW0001", "Mercedes", 2.4, 180, 1, 80, 100, 30, 50, 3);
 	Autobus a2("bwk3465", "bmw", 2.2, 200, 2);
 	Autobus a3("cwk3465", "bmw", 2.72, 287, 2);
@@ -375,15 +457,26 @@ void vector_find() {
 	aut.push_back(a2);
 	typedef vector<Autobus>::iterator IT;
 	IT it;
-	it = find_if(aut.begin(), aut.end(), Komp<Autobus>(Komp<Autobus>::find_wg_marki));
+	it = find_if(aut.begin(), aut.end(), Komp2<Autobus>(Komp2<Autobus>::wg_marki, "bmw"));
 	if (it == aut.end()) {
-		cout << "Nie znaleziono autobusu o tym numerze rejestracyjnym" << endl;
+		cout << "Nie znaleziono szukanego autobusu" << endl;
 	}
 	else {
 		cout << "Twoj obiekt to " << *it << endl;
 	}
 
-}*/
-void czy_jest_rej() {
-	1;
+}
+void find_max_elem() {
+	Autobus a1("aWW0001", "Mercedes", 2.4, 180, 1, 80, 100, 30, 50, 3);
+	Autobus a2("bwk3465", "bmw", 2.2, 200, 2);
+	Autobus a3("cwk3465", "bmw", 2.72, 287, 2);
+	vector<Autobus> aut;
+	aut.push_back(a3);
+	aut.push_back(a1);
+	aut.push_back(a2);
+	typedef vector<Autobus>::iterator IT;
+	IT it;
+	it = max_element(aut.begin(), aut.end(), Komp<Autobus>(Komp<Autobus>::wg_mocy));
+	cout << *it;
+
 }

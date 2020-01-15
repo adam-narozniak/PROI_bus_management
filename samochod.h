@@ -28,5 +28,7 @@ public:
 	void odczytaj(string = "outputs.txt");
 	string get_nr_rej();
 	Silnik * get_silnik();
+	Bak * get_bak();
+	string get_marka();
 };
 #endif

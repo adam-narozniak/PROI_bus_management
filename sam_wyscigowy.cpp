@@ -74,3 +74,16 @@ istream& operator>> (istream& str, Sam_wyscigowy &w) {
 Sam_wyscigowy::~Sam_wyscigowy() {
 	cout << "Destruktor SAM_WYSCIGOWY wlaczony" << endl;
 }
+
+/*string Sam_wyscigowy::get_nr_rej() {
+	return nr_rej;
+}
+
+Silnik *Sam_wyscigowy::get_silnik() {
+	return silnik;
+}
+Bak * Sam_wyscigowy::get_bak() {
+	return bak;
+}
+string  Sam_wyscigowy::get_marka() {
+	return marka;*/

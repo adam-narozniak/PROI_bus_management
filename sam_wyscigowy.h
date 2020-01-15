@@ -17,5 +17,9 @@ public:
 	void odczytaj(string = "outputw.txt");
 	friend ostream& operator<<(ostream&, const Sam_wyscigowy &);
 	friend istream& operator>> (istream& str, Sam_wyscigowy &w);
+	/*string get_nr_rej();
+	Silnik * get_silnik();
+	Bak * get_bak();
+	string get_marka();*/
 };
 #endif
