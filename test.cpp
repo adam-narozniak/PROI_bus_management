@@ -19,7 +19,7 @@ void menu() {
 		}
 		else if (a == 4) {
 			do {
-				cout << "1 - autobusow" << endl << "2- samochodow" << endl << "3 - samochodow wyscigowych" << endl << "4 - wyjscie" << endl;
+				cout << "1 - autobusow" << endl << "2 - samochodow" << endl << "3 - samochodow wyscigowych" << endl << "4 - wyjscie" << endl;
 				cin >> a;
 				if (a == 1) {
 					baza_autobus();
@@ -43,8 +43,8 @@ void menu() {
 }
 void baza_autobus() {
 	Autobus a1("aWW0001", "Mercedes", 2.4, 180, 1, 80, 100, 30, 50, 3);
-	Autobus a2("bwk3465", "bmw", 2.2, 200, 2);
-	Autobus a3("cwk3465", "bmw", 2.72, 287, 2);
+	Autobus a2("bwk3465", "bmw", 2.2, 200, 2, 32, 40);
+	Autobus a3("cwk3465", "bmw", 2.72, 287, 2, 37.3, 50);
 	vector<Autobus> aut;
 	aut.push_back(a3);
 	aut.push_back(a1);
@@ -52,52 +52,144 @@ void baza_autobus() {
 	tekst_menu(aut);
 }
 void baza_samochod() {
-	1;
+	Samochod s1("aWOK 2343", "porshe", 1.2, 130, 1, 34, 60);
+	Samochod s2("bLWK 2343", "bmw", 1.8, 172, 2, 20, 70);
+	Samochod s3("cWWK 2SD3", "audi", 2.2, 230, 1, 54, 60);
+	vector<Samochod> sam;
+	sam.push_back(s1);
+	sam.push_back(s2);
+	sam.push_back(s3);
+	tekst_menu(sam);
 }
 void baza_sam_wyscigowy() {
-	1;
+	Sam_wyscigowy s1("aWOA 2343", "volvo", 1.2, 130, 1, 34, 60,"A Rh+");
+	Sam_wyscigowy s2("bGD 2343", "bmw", 1.8, 172, 2, 20, 70);
+	Sam_wyscigowy s3("cPA 2SD3", "audi", 2.2, 230, 1, 54, 60, "AB Rh-");
+	vector<Sam_wyscigowy> sam;
+	sam.push_back(s1);
+	sam.push_back(s2);
+	sam.push_back(s3);
+	tekst_menu(sam);
 }
 template <class T>
 void tekst_menu(vector<T> &v) {
+	typedef vector<T>::iterator IT;
 	do {
-		cout << "1-dodaj" << endl << "2-sortuj" << endl << "3-znajdz" << endl << "4-max" << endl << "5-min" << endl << "6 wyswietl" << endl;
+		cout << "1-dodaj" << endl << "2-sortuj" << endl << "3-znajdz" << endl << "4-max" << endl << "5-min" << endl << "6 wyswietl" << endl
+			<< "7 wyjscie" << endl;
 		int a;
 		cin >> a;
 		if (a == 1) {
+			getchar();
 			T t1;
-			cin>> t1;
+			cin >> t1;
+			v.push_back(t1);
 		}
 		else if (a == 2) {
-			cout << "Podaj tryb sortowania" << endl<<"1-wg_rejestracji, 2-wg_pojemnosci, 3-wg_mocy, 4-wg_paliwa" << endl;
+			cout << "Podaj tryb sortowania" << endl << "1-wg_rejestracji, 2-wg_pojemnosci, 3-wg_mocy, 4-wg_paliwa" << endl;
 			cin >> a;
-			switch(a){
+			switch (a) {
 			case 1:
-				sort(v.begin(), v.end(), Komp<T>(Komp<Autobus>::wg_rejestracji));
+				sort(v.begin(), v.end(), Komp<T>(Komp<T>::wg_rejestracji));
 				break;
 			case 2:
-				sort(v.begin(), v.end(), Komp<T>(Komp<Autobus>::wg_pojemnosci));
+				sort(v.begin(), v.end(), Komp<T>(Komp<T>::wg_pojemnosci));
 				break;
 			case 3:
-				sort(v.begin(), v.end(), Komp<T>(Komp<Autobus>::wg_mocy));
+				sort(v.begin(), v.end(), Komp<T>(Komp<T>::wg_mocy));
 				break;
 			case 4:
-				sort(v.begin(), v.end(), Komp<T>(Komp<Autobus>::wg_paliwa));
+				sort(v.begin(), v.end(), Komp<T>(Komp<T>::wg_paliwa));
 				break;
 			default:
 				break;
 			}
 		}
 		else if (a == 3) {
+			cout << "Podaj tryb znajdywania:" << endl << "1- wg_marki, 2-wg_min_pojemnosci, 3-wg_min_mocy, 4-wg_min_paliwa" << endl;
+			cin >> a;
+			cout << "Podaj interesujacy Cie parametr" << endl;
+			string s;
+			cin >> s;
+
+			IT it;
+			switch (a) {
+			case 1:
+				it = find_if(v.begin(), v.end(), Komp2<T>(Komp2<T>::wg_marki, s));
+				break;
+			case 2:
+				it = find_if(v.begin(), v.end(), Komp2<T>(Komp2<T>::wg_min_pojemnosci, s));
+				break;
+			case 3:
+				it = find_if(v.begin(), v.end(), Komp2<T>(Komp2<T>::wg_min_mocy, s));
+				break;
+			case 4:
+				it = find_if(v.begin(), v.end(), Komp2<T>(Komp2<T>::wg_min_paliwa, s));
+				break;
+			default:
+				break;
+			}
+			if (a > 0 && a < 5) {
+				if (it == v.end()) {
+					cout << "Nie znaleziono szukanego pojazdu" << endl;
+				}
+				else {
+					cout << "Twoj obiekt to " << *it << endl;
+				}
+			}
 
 		}
 		else if (a == 4) {
+			cout << "Podaj tryb porownan" << endl << "1-wg_rejestracji, 2-wg_pojemnosci, 3-wg_mocy, 4-wg_paliwa" << endl;
+			cin >> a;
+			IT it;
+			switch (a) {
+			case 1:
+				it = max_element(v.begin(), v.end(), Komp<T>(Komp<T>::wg_rejestracji));
+				break;
+			case 2:
+				it = max_element(v.begin(), v.end(), Komp<T>(Komp<T>::wg_pojemnosci));
+				break;
+			case 3:
+				it = max_element(v.begin(), v.end(), Komp<T>(Komp<T>::wg_mocy));
+				break;
+			case 4:
+				it = max_element(v.begin(), v.end(), Komp<T>(Komp<T>::wg_paliwa));
+				break;
+			default:
+				break;
+			}
+			if (a > 0 && a < 5) {
+				cout << "Maxymalny element to: " << endl << *it << endl;
+			}
 
 		}
 		else if (a == 5) {
-
+			cout << "Podaj tryb porownan" << endl << "1-wg_rejestracji, 2-wg_pojemnosci, 3-wg_mocy, 4-wg_paliwa" << endl;
+			cin >> a;
+			IT it;
+			switch (a) {
+			case 1:
+				it = min_element(v.begin(), v.end(), Komp<T>(Komp<T>::wg_rejestracji));
+				break;
+			case 2:
+				it = min_element(v.begin(), v.end(), Komp<T>(Komp<T>::wg_pojemnosci));
+				break;
+			case 3:
+				it = min_element(v.begin(), v.end(), Komp<T>(Komp<T>::wg_mocy));
+				break;
+			case 4:
+				it = min_element(v.begin(), v.end(), Komp<T>(Komp<T>::wg_paliwa));
+				break;
+			default:
+				break;
+			}
+			if (a > 0 && a < 5) {
+				cout << "Minimalny element to: " << endl << *it << endl;
+			}
 		}
 		else if (a == 6) {
-
+		copy(v.begin(), v.end(), ostream_iterator<T>(cout, ""));
 		}
 		else {
 			break;
@@ -406,7 +498,7 @@ void vector_iterator_sort() {
 	typedef vector<Autobus>::iterator IT;
 	IT begin = aut.begin();
 	sort(aut.begin(), aut.end(), Komp<Autobus>(Komp<Autobus>::wg_rejestracji));
-	copy(aut.begin(), aut.end(), ostream_iterator<Autobus>(cout, " "));
+	copy(aut.begin(), aut.end(), ostream_iterator<Autobus>(cout, ""));
 
 }
 void iterator() {

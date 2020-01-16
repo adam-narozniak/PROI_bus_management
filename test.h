@@ -97,13 +97,13 @@ int Komp2<P>::operator() (P& a1) {
 		return (a1.get_marka().compare(str) == 0);
 
 	case wg_min_pojemnosci:
-		return (a1.get_silnik()->get_pojemnosc()) < stod(str);
+		return (a1.get_silnik()->get_pojemnosc()) > stod(str);
 
 	case wg_min_mocy:
-		return (a1.get_silnik()->get_moc()) < stod(str);
+		return (a1.get_silnik()->get_moc()) > stod(str);
 
 	case wg_min_paliwa:
-		return (a1.get_bak()->get_stan()) < stod(str);
+		return (a1.get_bak()->get_stan()) > stod(str);
 	}
 	return 0;
 }
